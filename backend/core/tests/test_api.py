@@ -10,7 +10,9 @@ from rest_framework import status
 def test_auth_token_obtain(api_client, operator_user):
     """Test getting JWT token"""
     response = api_client.post(
-        "/api/auth/token/", {"username": "operator", "password": "operator123"}
+        "/api/auth/token/",
+        {"username": "operator", "password": "operator123"},
+        format="json",
     )
 
     assert response.status_code == status.HTTP_200_OK
@@ -35,13 +37,16 @@ def test_detection_create(api_client, admin_user, drone, flight):
     api_client.force_authenticate(user=admin_user)
 
     data = {
-        "drone": str(drone.id),
-        "flight": str(flight.id),
-        "timestamp": timezone.now().isoformat(),
-        "label": "metal",
-        "confidence": 0.95,
+        "type": "Feature",
         "geometry": {"type": "Point", "coordinates": [73.0, 33.6]},
-        "bbox": [100, 100, 150, 150],
+        "properties": {
+            "drone": str(drone.id),
+            "flight": str(flight.id),
+            "timestamp": timezone.now().isoformat(),
+            "label": "metal",
+            "confidence": 0.95,
+            "bbox": [100, 100, 150, 150],
+        },
     }
 
     response = api_client.post("/api/detections/", data, format="json")

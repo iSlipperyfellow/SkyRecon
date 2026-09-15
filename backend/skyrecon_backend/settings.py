@@ -301,3 +301,8 @@ ENABLE_REAL_YOLO = os.environ.get("ENABLE_REAL_YOLO", "False").lower() == "true"
 ENABLE_RL_NAVIGATION = os.environ.get("ENABLE_RL_NAVIGATION", "True").lower() == "true"
 ENABLE_HEATMAP = os.environ.get("ENABLE_HEATMAP", "True").lower() == "true"
 MAX_CONCURRENT_DRONES = int(os.environ.get("MAX_CONCURRENT_DRONES", "10"))
+
+# Email configuration
+EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "noreply@skyrecon.local")
+ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "admin@skyrecon.local")
