@@ -17,7 +17,7 @@ jobs:
         image: postgis/postgis:15-3.3
         env:
           POSTGRES_DB: test_db
-          POSTGRES_USER: test_user
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: test_pass
         options: >-
           --health-cmd pg_isready
@@ -52,9 +52,9 @@ jobs:
         DATABASE_HOST: 127.0.0.1
         DATABASE_PORT: 5432
         POSTGRES_DB: test_db
-        POSTGRES_USER: test_user
+        POSTGRES_USER: postgres
         POSTGRES_PASSWORD: test_pass
-        DATABASE_URL: postgresql://test_user:test_pass@127.0.0.1:5432/test_db
+        DATABASE_URL: postgresql://postgres:test_pass@127.0.0.1:5432/test_db
         DEBUG: "False"
         SECRET_KEY: test-key-for-ci-only
       run: |
