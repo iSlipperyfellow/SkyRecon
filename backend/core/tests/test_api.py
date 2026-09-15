@@ -37,16 +37,13 @@ def test_detection_create(api_client, admin_user, drone, flight):
     api_client.force_authenticate(user=admin_user)
 
     data = {
-        "type": "Feature",
-        "geometry": {"type": "Point", "coordinates": [73.0, 33.6]},
-        "properties": {
-            "drone": str(drone.id),
-            "flight": str(flight.id),
-            "timestamp": timezone.now().isoformat(),
-            "label": "metal",
-            "confidence": 0.95,
-            "bbox": [100, 100, 150, 150],
-        },
+        "drone": str(drone.id),
+        "flight": str(flight.id),
+        "timestamp": timezone.now().isoformat(),
+        "label": "metal",
+        "confidence": 0.95,
+        "geometry": "POINT(73.0 33.6)",
+        "bbox": [100, 100, 150, 150],
     }
 
     response = api_client.post("/api/detections/", data, format="json")
@@ -60,4 +57,4 @@ def test_health_check(api_client):
     response = api_client.get("/api/health/")
 
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] == "healthy"
+    assert response.data["status"] == "ok"
