@@ -25,17 +25,19 @@ def test_drone_list(api_client, operator_user, drone):
     response = api_client.get("/api/drones/")
 
     assert response.status_code == status.HTTP_200_OK
-    assert len(response.data["results"]) == 1
+    assert len(response.data["results"]["features"]) == 1
 
 
 @pytest.mark.django_db
 def test_detection_create(api_client, admin_user, drone, flight):
     """Test detection creation"""
+    from django.utils import timezone
     api_client.force_authenticate(user=admin_user)
 
     data = {
         "drone": str(drone.id),
         "flight": str(flight.id),
+        "timestamp": timezone.now().isoformat(),
         "label": "metal",
         "confidence": 0.95,
         "geometry": {"type": "Point", "coordinates": [73.0, 33.6]},

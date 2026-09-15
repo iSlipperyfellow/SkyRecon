@@ -26,10 +26,11 @@ def test_drone_creation(db):
 @pytest.mark.django_db
 def test_detection_creation(drone, flight):
     """Test detection can be created"""
+    from django.utils import timezone
     detection = Detection.objects.create(
         drone=drone,
         flight=flight,
-        timestamp=flight.start_time,
+        timestamp=flight.start_time or timezone.now(),
         geometry=Point(73.0, 33.6),
         label="metal",
         confidence=0.9,

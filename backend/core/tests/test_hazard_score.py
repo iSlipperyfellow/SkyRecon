@@ -14,6 +14,8 @@ class TestHazardScoring(TestCase):
     """Test hazard scoring calculation"""
 
     def setUp(self):
+        from django.utils import timezone
+        now = timezone.now()
         self.drone = Drone.objects.create(
             identifier="test-drone",
             model="Test",
@@ -24,6 +26,7 @@ class TestHazardScoring(TestCase):
         self.flight = Flight.objects.create(
             drone=self.drone,
             mission_name="Test",
+            start_time=now,
         )
 
     def test_metal_high_confidence(self):

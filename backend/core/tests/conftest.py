@@ -9,9 +9,6 @@ from rest_framework.test import APIClient
 
 from core.models import Detection, Drone, Flight, Hazard, Runway
 
-User = get_user_model()
-
-
 @pytest.fixture
 def api_client():
     """API client fixture"""
@@ -21,6 +18,7 @@ def api_client():
 @pytest.fixture
 def admin_user(db):
     """Create admin user"""
+    User = get_user_model()
     user = User.objects.create_superuser(
         username="admin", email="admin@test.com", password="admin123"
     )
@@ -32,6 +30,7 @@ def admin_user(db):
 @pytest.fixture
 def operator_user(db):
     """Create operator user"""
+    User = get_user_model()
     user = User.objects.create_user(
         username="operator", email="operator@test.com", password="operator123"
     )
@@ -78,6 +77,8 @@ def runway(db):
 @pytest.fixture
 def flight(db, drone):
     """Create sample flight"""
+    from django.utils import timezone
+    now = timezone.now()
     path = LineString(
         [
             (73.0550, 33.6125),
@@ -89,6 +90,8 @@ def flight(db, drone):
     return Flight.objects.create(
         drone=drone,
         mission_name="Test Mission",
+        start_time=now,
+        end_time=now,
         path=path,
         status="COMPLETED",
         altitude_m=50,
@@ -98,10 +101,11 @@ def flight(db, drone):
 @pytest.fixture
 def detection(db, drone, flight):
     """Create sample detection"""
+    from django.utils import timezone
     return Detection.objects.create(
         drone=drone,
         flight=flight,
-        timestamp=flight.end_time or flight.start_time,
+        timestamp=flight.end_time or flight.start_time or timezone.now(),
         geometry=Point(73.0555, 33.6127),
         label="metal",
         confidence=0.92,
