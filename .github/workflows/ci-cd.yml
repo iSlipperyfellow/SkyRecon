@@ -48,6 +48,7 @@ jobs:
         DEBUG: "False"
         SECRET_KEY: test-key-for-ci-only
       run: |
+        mkdir -p logs
         python manage.py migrate
         pytest core/tests/ -v --cov=core --cov-report=xml
 
