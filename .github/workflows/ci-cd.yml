@@ -49,11 +49,15 @@ jobs:
     - name: Run Django tests
       working-directory: ./backend
       env:
-        DATABASE_URL: postgresql://test_user:test_pass@localhost:5432/test_db
+        DATABASE_HOST: 127.0.0.1
+        DATABASE_PORT: 5432
+        POSTGRES_DB: test_db
+        POSTGRES_USER: test_user
+        POSTGRES_PASSWORD: test_pass
+        DATABASE_URL: postgresql://test_user:test_pass@127.0.0.1:5432/test_db
         DEBUG: "False"
         SECRET_KEY: test-key-for-ci-only
       run: |
-        mkdir -p logs
         python manage.py migrate
         pytest core/tests/ -v --cov=core --cov-report=xml
 

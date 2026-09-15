@@ -72,14 +72,36 @@ WSGI_APPLICATION = "skyrecon_backend.wsgi.application"
 ASGI_APPLICATION = "skyrecon_backend.asgi.application"
 
 # Database
+POSTGRES_DB = os.environ.get("POSTGRES_DB", "skyrecon_db")
+POSTGRES_USER = os.environ.get("POSTGRES_USER", "skyrecon_user")
+POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "skyrecon_pass")
+DATABASE_HOST = os.environ.get("DATABASE_HOST", "db")
+DATABASE_PORT = os.environ.get("DATABASE_PORT", "5432")
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if DATABASE_URL:
+    from urllib.parse import urlparse
+
+    url = urlparse(DATABASE_URL)
+    if url.path:
+        POSTGRES_DB = url.path.lstrip("/")
+    if url.username:
+        POSTGRES_USER = url.username
+    if url.password:
+        POSTGRES_PASSWORD = url.password
+    if url.hostname:
+        DATABASE_HOST = url.hostname
+    if url.port:
+        DATABASE_PORT = str(url.port)
+
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": os.environ.get("POSTGRES_DB", "skyrecon_db"),
-        "USER": os.environ.get("POSTGRES_USER", "skyrecon_user"),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "skyrecon_pass"),
-        "HOST": os.environ.get("DATABASE_HOST", "db"),
-        "PORT": os.environ.get("DATABASE_PORT", "5432"),
+        "NAME": POSTGRES_DB,
+        "USER": POSTGRES_USER,
+        "PASSWORD": POSTGRES_PASSWORD,
+        "HOST": DATABASE_HOST,
+        "PORT": DATABASE_PORT,
         "CONN_MAX_AGE": 600,
         "OPTIONS": {
             "connect_timeout": 10,
