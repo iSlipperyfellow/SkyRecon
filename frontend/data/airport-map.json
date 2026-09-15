@@ -1,0 +1,93 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "type": "runway",
+                "name": "Runway 09L/27R"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            73.048,
+                            33.611
+                        ],
+                        [
+                            73.062,
+                            33.611
+                        ],
+                        [
+                            73.062,
+                            33.613
+                        ],
+                        [
+                            73.048,
+                            33.613
+                        ],
+                        [
+                            73.048,
+                            33.611
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "type": "taxiway",
+                "name": "Taxiway Alpha"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        73.048,
+                        33.614
+                    ],
+                    [
+                        73.062,
+                        33.614
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "type": "building",
+                "name": "Terminal 1"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            73.052,
+                            33.615
+                        ],
+                        [
+                            73.058,
+                            33.615
+                        ],
+                        [
+                            73.058,
+                            33.618
+                        ],
+                        [
+                            73.052,
+                            33.618
+                        ],
+                        [
+                            73.052,
+                            33.615
+                        ]
+                    ]
+                ]
+            }
+        }
+    ]
+}

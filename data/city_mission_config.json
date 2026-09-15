@@ -1,0 +1,53 @@
+{
+  "mission_id": "CityEnviron_StreetPatrol",
+  "sim_mode": "ned_native",
+
+  "notes": [
+    "Coordinates scouted using manual spectator camera on 2026-05-01.",
+    "Drone will teleport directly to the street start point, completely bypassing spawn building collisions.",
+    "Flying at exactly 15.4m altitude to clear streetlamps while still being able to detect cars/debris."
+  ],
+
+  "home_ned": {
+    "x": -9.47,
+    "y": -25.66,
+    "z": -15.44
+  },
+
+  "cruise_altitude_ned_z": -15.44,
+
+  "waypoints": [
+    {
+      "x": -9.47,
+      "y": -25.66,
+      "z": -15.44,
+      "label": "street_start",
+      "_note": "Exact start of the road corridor"
+    },
+    {
+      "x": -150.0,
+      "y": -25.66,
+      "z": -15.44,
+      "label": "street_mid_1",
+      "_note": "150m down the street"
+    },
+    {
+      "x": -300.0,
+      "y": -25.66,
+      "z": -15.44,
+      "label": "street_mid_2",
+      "_note": "300m down the street"
+    },
+    {
+      "x": -471.71,
+      "y": -24.85,
+      "z": -15.44,
+      "label": "street_end",
+      "_note": "End of the scouted corridor"
+    }
+  ],
+
+  "battery_demo_seconds": 45,
+
+  "drone_speed_mps": 8
+}

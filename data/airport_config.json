@@ -1,0 +1,12 @@
+{
+    "airport_id": "CityEnviron_Runway",
+    "base_station": {"lat": 33.9416, "lng": -118.4085, "alt": 0},
+    "runways": [
+        {
+            "id": "Main_Street",
+            "start": {"lat": 33.9416, "lng": -118.4085},
+            "end": {"lat": 33.9420, "lng": -118.4080},
+            "width_meters": 1
+        }
+    ]
+}

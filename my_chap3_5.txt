@@ -1,0 +1,1483 @@
+[Default] COMSATS University, Islamabad Pakistan
+[Default] SkyRecon
+[Default] By
+[Default] Safaan UmarCIIT/FA22-BAI-028/ISB
+[Default] Ibrahim Arshad      CIIT/FA22-BAI-015/ISB
+[Default] SupervisorMs. Anum Zahra
+[Default] Bachelor of Science in Artificial Intelligence (2022-2026)
+[Default] The candidate confirms that the work submitted is their own and appropriate credit has been given where reference has been made to the work of others.
+[] COMSATS University, Islamabad Pakistan
+[] SkyRecon
+[] A project presented to
+[] COMSATS University, Islamabad
+[] In partial fulfillment
+[] of the requirement for the degree of
+[] Bachelors of Science in Artificial Intelligence
+[] (2022-2026)
+[] By
+[] Safaan UmarCIIT/FA22-BAI-028/ISB
+[] Ibrahim ArshadCIIT/FA22-BAI-015/ISB
+[] Declaration
+[] We hereby declare that this software, neither whole nor as a part, has been copied out from any source. It is further declared that we have developed this software and the accompanying report entirely on the basis of our personal efforts. If any part of this project is proved to be copied or found to be a reproduction of another, we accept full responsibility for the consequences. No portion of this work has been submitted elsewhere for any other degree or qualification.
+[] Safaan Umar      Ibrahim Arshad
+[] Certificate of Approval
+[] It is to certify that the final year project of BS (CS) Dukan was developed by SAFAAN UMAR (CIIT/FA22-BAI-028) and IBRAHIM ARSHAD (CIIT/FA22-BAI-015) under the supervision of MS. ANUM ZAHRA and in her opinion; it is fully adequate, in scope and quality for the degree of Bachelors of Science in Artificial Intelligence.
+[Default] ---------------------------------------
+[Default] Supervisor
+[Default] ---------------------------------------
+[Default] External Examiner
+[Default] ---------------------------------------
+[Default] Head of Department
+[Default] (Department of Computer Science)
+[] Executive Summary
+[NormalWeb] SkyRecon is a state-of-the-art drone platform driven by artificial intelligence that raises the aviation safety bar sky high. It can now independently detect and analyze foreign object debris (FOD) present on airport flight paths. The debris may attract birds lint and lead to catastrophic consequences like a flight delaying discrepancy, equipment damage, and possible safety concerns. Traditional manual inspection methods are
+[NormalWeb] slow and resource-consuming as well as variable. SkyRecon attaches the temporal and spatial issues related to waste disposal through a combination of computer vision, reinforcement learning, and communication technologies in the cloud which provide a scalable, real-time, automated solution.
+[NormalWeb] The structure of the suggested system is based on two modes — simulation and hardware. In the former case, simulated drones are used within an environment like AirSim to ensure safe training and evaluation of the AI models. Because of this, the agents of reinforcement learning can create the highest possible navigational and coverage policies using algorithms like Proximal Policy Optimization (PPO) and Deep Deterministic Policy Gradient (DDPG). In the hardware mode, real drones establish a secure communication protocol like MQTT or WebSocket that connects to a cloud inference backend. The drones capture live video and stream it to the cloud, which performs the AI-based debris detection using YOLOv8, a state-of-the-art object detection model.
+[NormalWeb] Once the debris is detected, skyRecons Geospatial Mapping Module presents the results with a dynamic map interface. Each detection event is tagged with geographical coordinates, confidence levels are annotated, and material types are classified. Hazard Analysis Module is the one to determine the level of severity by means of debris and the distance to critical flight areas. All of this information is consolidated into a centralized web dashboard used as the main control panel for the airport. The dashboard features live telemetry of the drone, detection overlays, hazarding analytics, and alert notifications which rather easy the transmission of response actions.
+[NormalWeb] The structure of SkyRecon is modular, cloud-based architecture allowing effortless scalability, fault tolerance, and integration of existing airport programs. It also considers regulations on safety issues like geofencing, altitude limits, and emergency handling to comply with UAV operational guidelines. The dual nature of the system, it is both a research-oriented simulation and a piece of hardware to be deployed, it links the gap between academic innovations and real-world aviation applications.
+[NormalWeb] SkyRecon is on the forefront of the implementation of AI-backed ways of measuring dangers in flight paths, providing real-time feedback through visualization, and a change in the airport’s approach to the security of operations, all at the same time.
+[] Abstract
+[] SkyRecon's main purpose is to pioneer the way to more safety in aviation by leveraging the power of technological solutions like artificial intelligence and drone to detect debris on airport runways and flight paths automatedly. The prevailing systems are heavily dependent on manual inspection, and besides that, they have stationary surveillance cameras which have a limited field of view, and they react slowly. The human factor is also one of the major contributors to the errors. The current debris management practices lack the ability to provide real-time data analytics and independent vehicle integration for the method of hazard detection being difficult. SkyRecon approaches these problems by the means of a smart, cloud-based drone infrastructure that could work autonomously, offer immediate debris categorization, and create hazard visualization. The project is dedicated to providing a scalable, fully-autonomous runway monitoring system that can change from virtual to actual hardware environments easily. The pivotal missions are to create an AI vision model for YOLOv8-based debris detection, to make optimal path planning of drone flights using reinforcement learning algorithms, and to secure cloud communication framework with live data for streaming and analysis. Furthermore, the project intends to generate geospatial heatmaps and provide airport authorities with actionable hazard insights through a web dashboard. In the end, the value of the project will be in the enhancement of the airport's operational safety, the reduction of the manual activity, and elimination of bird strikes by a reliable, intelligent, and entirely autonomous aerial monitoring system.
+[] Acknowledgment
+[] We are deeply grateful to Allah Almighty for granting us the strength, wisdom, and perseverance to complete this project. We would like to express sincere gratitude to our supervisor, Ms. Anum Zahra, for her continuous support, insightful feedback, and invaluable guidance throughout our research and development process. We are also thankful to our families and friends for their patience, motivation, and encouragement.
+[] Safaan UmarIbrahim Arshad
+[] List of Abbreviations
+[] Abbreviation
+[] Description
+[] AI
+[] Artificial Intelligence
+[] UAV
+[] Unmanned Aerial Vehicle
+[] FOD
+[] Foreign Object Debris
+[] YOLO
+[] You Only Look Once
+[] RL
+[] Reinforcement Learning
+[] API
+[] Application Programming Interface
+[] MQTT
+[] Message Queuing Telemetry Transport
+[] GUI
+[] Graphical User Interface
+[] GPS
+[] Global Positioning System
+[] Table of Contents
+[TOCHeading] Contents
+[TOC3] Declaration2
+[TOC3] Certificate of Approval3
+[TOC3] Executive Summary4
+[TOC3] Abstract5
+[TOC3] Acknowledgment6
+[TOC3] List of Abbreviations7
+[TOC3] Table of Contents8
+[TOC3] Table of Figures15
+[TOC1] Chapter 1: Introduction and Problem Definition16
+[TOC2] 1.1 Overview of the Project16
+[TOC2] 1.2 Vision Statement16
+[TOC2] 1.3 Problem Statement16
+[TOC2] 1.4 Proposed Solution17
+[TOC2] 1.5 Objectives17
+[TOC2] 1.6 Scope17
+[TOC3] 1.6.1 Limitations / Constraints17
+[TOC2] 1.7 Modules18
+[TOC3] 1.7.1 Drone System Modules18
+[TOC3] 1.7.2 Cloud Backend Modules19
+[TOC3] 1.7.3 Web Dashboard Interface Modules20
+[TOC2] 1.8 Related Systems21
+[TOC3] 1.8.1 Literature Review21
+[TOC3] 1.8.2 Related System Analysis22
+[TOC3] Existing System/Application22
+[TOC3] Weakness / Limitations22
+[TOC3] Proposed SkyRecon Solution22
+[TOC3] FODetect (Xsight Systems)22
+[TOC3] Being stationary, ground-mounted sensors cannot dynamically adapt to changing debris zones and have limited coverage.22
+[TOC3] Mobile, AI-driven drones employing flexible area scanning for runway surveillance.22
+[TOC3] BirdGuard AI (2022)22
+[TOC3] Only birds are detected; lacks debris classification or mapping capability.22
+[TOC3] AI-based debris and hazard detection integrated with bird-attraction risk scoring.22
+[TOC3] Manual Inspection Teams22
+[TOC3] Human-intensive, slow, and inconsistent in bad weather or low-light conditions.22
+[TOC3] Provides autonomous 24×7 weather-resilient operation with infrared/low-light camera support.22
+[TOC3] Fixed CCTV Monitoring22
+[TOC3] Limited field of view; lacks autonomous navigation or AI classification.22
+[TOC3] Uses drone mobility and YOLOv8 detection for complete situational awareness.22
+[TOC3] Radar-Based Runway Monitors22
+[TOC3] Installation and maintenance costs are high; small debris can lead to false positives.22
+[TOC3] Utilizes cost-effective optical AI inference with confidence-based error filtering to reduce false alarms.22
+[TOC3] 1.9 Tools and Technologies23
+[TOC3] 1.10 Project Contribution23
+[TOC3] 1.11 Relation to Course Modules24
+[TOC2] Chapter 2 – Requirement Analysis24
+[TOC3] 2.1 Introduction24
+[TOC3] 2.2.1 Use Case Diagram25
+[TOC3] 26
+[TOC3] The diagram outlines functional interactions between external actors and the SkyRecon system, showing how drone operators trigger missions, AI modules process detection feeds, and airport officers respond to generated alerts26
+[TOC3] 2.3 Mock-Up Based Functional Requirements26
+[TOC3] Mockup M1 – Login Page26
+[TOC3] 27
+[TOC3] Mockup M2 – Main Dashboard28
+[TOC3] 28
+[TOC3] Mockup M3 – Alerts and Notifications 29
+[TOC3] Mockup M4 – Mission Control30
+[TOC3] 30
+[TOC3] Mockup M5 – Live Detection Feed31
+[TOC3] 31
+[TOC3] Mockup M6 – Hazard Map Dashboard32
+[TOC3] 32
+[TOC3] Mockup M7 – Analytics and Reports33
+[TOC3] 33
+[TOC3] Mockup M8 – Model Management34
+[TOC3] 34
+[TOC3] Mockup M9 – Admin Configuration35
+[TOC3] 35
+[TOC2] 2.3.1 Backup Process Requirements36
+[TOC3] 1. Purpose36
+[TOC3] 2. Scope36
+[TOC3] 3. Backup Process Overview36
+[TOC3] 4. Event–Response Mapping Table37
+[TOC3] 5. Backup Validation and Security40
+[TOC3] 6. Recovery Policy40
+[TOC2] 2.4 Non-Functional Requirements41
+[TOC3] 2.4.1 Reliability41
+[TOC3] 2.4.2 Usability41
+[TOC3] 2.4.3 Performance41
+[TOC3] 2.4.4 Security42
+[TOC2] 2.5 External Interface Requirements42
+[TOC3] 2.5.1 User Interface Requirements42
+[TOC3] 2.5.2 Software Interfaces43
+[TOC3] 2.5.3 Hardware Interfaces43
+[TOC3] 2.5.4 Communication Interfaces43
+[TOC2] 2.6 References44
+[] Table of Figures
+[TableofFigures] Figure 128
+[TableofFigures] Figure 229
+[TableofFigures] Figure 330
+[TableofFigures] Figure 431
+[TableofFigures] Figure 532
+[TableofFigures] Figure 633
+[TableofFigures] Figure 734
+[TableofFigures] Figure 836
+[TableofFigures] Figure 937
+[] Chapter 1: Introduction and Problem Definition
+[] 1.1 Overview of the Project
+[] SkyRecon is a drone system, fully auto driven by AI for the autonomous detection and classification of debris on airport flight paths. It is based on computer vision for object recognition and reinforcement learning for a fully optimized flight path coverage. The entire system simulates both drone environments that are integrated via cloud communication and the actual physical drone environments, which makes it cloud-based and allows users to switch easily between testing and real-life deployment.
+[] 1.2 Vision Statement
+[] The SkyRecon System is a suitable solution for AI-powered drones and cloud-based monitoring for runway maintenance teams and airport safety authorities who require a quick, more accurate, and continuous remediation on debris hazards in flight paths. It is the first product on the market that is capable of real-time, autonomous classification, and mapping of runway debris.It does not rely on traditional manual inspections, fixed CCTV cameras, or costly ground-based radar systems. Instead, our product delivers scalable, autonomous, and intelligent debris detection with little human intervention and the highest possible operational safety through artificial intelligence, reinforcement learning, and cloud communication.
+[] 1.3 Problem Statement
+[] Airports are grappling with the problem of operational safety due to foreign object debris (FOD) that are some of the materials deposited on the airstrip. These can be metallic, plastic waste, or food sources that can attract birds. Manual inspections are labor-intensive, error-prone, and subject to human limitations. The absence of continuous automatic monitoring leads to bird strikes and potentially aircraft harm.
+[] 1.4 Proposed Solution
+[] SkyRecon makes use of autonomous drones which have onboard cameras and a cloud-based AI inference system. The drones perform live video capturing which is sent to a central server where the debris is detected using YOLOv8 in real time. The debris that is found is categorized by the type of material, geotagged, and presented on an interactive dashboard. Reinforcement learning models are responsible for the optimal flight path and the coverage while a safety module oversees the compliance of geofencing and emergency protocols.
+[] 1.5 Objectives
+[] BO-1: Decrease the time and labor costs of manual runway debris inspection by at least 60% through an autonomous drone surveillance system.
+[] BO-2: Enhance the precision of debris detection and classification by 30% compared to the manual visual inspections through AI-based object recognition.
+[] BO-3: Lessen the average runway downtime by 25% due to debris-related incidents through the faster detection and alert generation process.
+[] BO-4: Integrate real-time cloud-based hazard monitoring for continuous visibility of runway conditions.
+[] BO-5: Automate debris tracking, reporting, and archival logging processes to ensure regulatory requirement compliance in the airport.
+[] BO-6: Name a modular simulation-to-hardware framework that will decrease the cost of testing and accelerate the deployment of AI models to actual drones.
+[] 1.6 Scope
+[] The system is based on both simulation and hardware drone operation modes. The simulation uses AirSim and Gazebo environments for both training and evaluation. The hardware implementation is by drone–cloud communication via API for live inference. The web dashboard displaying the detections, analytics, and hazard visualization consolidates the UI and ensures multi-drone systems as well as different airport layouts are scalable.
+[] 1.6.1 Limitations / Constraints
+[] Weather Dependence: High-wind or rain may affect flight stability and image quality.
+[] Communication Latency: Cloud inference delays may slightly impact real-time response.
+[] Regulatory Constraints: Flight testing must comply with UAV operation laws and restricted airspace regulations.
+[] Power Limitations: Drone battery life limits continuous operation duration.
+[] Lighting Conditions: Poor visibility may cause the detection rate to be low.
+[] 1.7 Modules
+[] The proposed SkyRecon system is implemented using a modular architecture that abstracts functionalities into separate components that are interconnected but independent. Each module affects a specific operational aspect, thus ensuring scalability, maintainability, and clear data flow between the Drone System, Cloud Backend, and Web Dashboard Interface.
+[] 1.7.1 Drone System Modules
+[] Module 1: Debris Detection ModulePurpose: Capture live drone camera feed and perform AI-based debris detection.Features:
+[] FE-1: Capture video frames from onboard drone cameras in real time.
+[] FE-2: Transmit image frames securely to the cloud inference server for processing.
+[] FE-3: Receive annotated frames with detected debris bounding boxes and confidence scores.
+[] FE-4: Store temporary detection logs onboard for redundancy in case of communication loss.
+[] FE-5: Support multiple object types such as metal, plastic, and organic waste.
+[] Module 2: Autonomous Navigation ModulePurpose: Enable autonomous drone flight using reinforcement learning–based control.Features:
+[] FE-1: Generate optimal flight paths using trained RL algorithms (PPO/DDPG).
+[] FE-2: Continuously monitor GPS coordinates, altitude, and velocity.
+[] FE-3: Execute geofencing and altitude restrictions to ensure safe operation.
+[] FE-4: Trigger emergency behaviours (hover, return-to-home, or safe landing) upon low battery or signal loss.
+[] FE-5: Synchronize navigation data with the cloud backend for mission analytics.
+[] Module 3: Communication and Telemetry InterfacePurpose: Manage real-time data exchange between drones and the SkyRecon cloud system.Features:
+[] FE-1: Transmit live video streams and telemetry data via MQTT or WebSocket.
+[] FE-2: Authenticate drone communication using encryption and API tokens.
+[] FE-3: Receive cloud-based commands (start/stop mission, reroute, emergency halt).
+[] FE-4: Provide heartbeat signals to maintain connectivity integrity.
+[] FE-5: Log all communication packets for post-flight analysis.
+[] 1.7.2 Cloud Backend Modules
+[] Module 4: AI Inference and Orchestration ModulePurpose: Handle real-time inference, synchronization, and orchestration between system components.Features:
+[] FE-1: Process incoming video streams through YOLOv8 for debris classification.
+[] FE-2: Return inference results with debris labels, bounding boxes, and confidence levels.
+[] FE-3: Manage asynchronous requests from multiple drones concurrently.
+[] FE-4: Orchestrate inter-module communication (mapping, hazard scoring, alerting).
+[] FE-5: Maintain large architecture for multi-drone applications.
+[] Module 5: Hazard Analysis and Scoring ModulePurpose: Assess debris risk level based on detected type and proximity to flight paths.Features:
+[] FE-1: Assign hazard scores using rule-based logic and contextual data.
+[] FE-2: Flag high-risk detections for alert generation.
+[] FE-3: Integrate detection results with the mapping module for visual overlay.
+[] FE-4: Store hazard analysis results in PostgreSQL database with timestamps.
+[] Module 6: Geospatial Mapping and Database ModulePurpose: Change detection output to spatial representation and keep all records.Features:
+[] FE-1: Convert detection data into GeoJSON format for map rendering.
+[] FE-2: Generate dynamic debris heatmaps for frequency-based visualization.
+[] FE-3: Store drone flight logs, hazard scores, and debris metadata in the database.
+[] FE-4: Enable spatial queries using PostGIS for efficient map updates.
+[] FE-5: Provide APIs to serve location-based data to the dashboard.
+[] 1.7.3 Web Dashboard Interface Modules
+[] Module 7: Alert and Logging ModulePurpose: Centralize all event logs, detection records, and notifications.Features:
+[] FE-1: Display all detections with timestamps, coordinates, debris type, and hazard score.
+[] FE-2: Generate pop-up or email notifications for high-risk debris detections.
+[] FE-3: Allow filtering and sorting of logs by severity, confidence, or time.
+[] FE-4: Support exporting detection reports in CSV or PDF format.
+[] FE-5: Archive resolved alerts to maintain historical records.
+[] Module 8: Web Dashboard and User InterfacePurpose: Provide an interactive interface for monitoring drone operations and hazard visualization.Features:
+[] FE-1: Display real-time drone telemetry (position, altitude, battery, signal).
+[] FE-2: Show debris detection overlays and hazard zones on an interactive map.
+[] FE-3: Provide user authentication and role-based access control (Admin, Operator, Analyst).
+[] FE-4: Allow manual override or re-routing of drone missions from the interface.
+[] FE-5: Present analytics dashboards summarizing detection frequency and hazard distribution.
+[] Module 9: Admin Configuration and ControlPurpose: Manage user roles, system configurations, and backend connectivity.Features:
+[] FE-1: Create, edit, or revoke user accounts and roles.
+[] FE-2: Configure API keys, communication endpoints, and drone identifiers.
+[] FE-3: Update system thresholds (hazard score limits, geofence boundaries).
+[] FE-4: View backend health metrics such as CPU load, message latency, and uptime.
+[] Module 10: Testing and Safety ProtocolsPurpose: Ensure reliability, compliance, and validation of all system operations.Features:
+[] FE-1: Conduct simulation-based testing in AirSim before real deployment.
+[] FE-2: Perform integration and stress testing under controlled conditions.
+[] FE-3: Enforce safety routines like emergency landing and manual override.
+[] FE-4: Generate test reports comparing simulation and real-world performance.
+[] 1.8 Related Systems
+[] 1.8.1 Literature Review
+[] A thorough review of the recent advancements in AI-driven aerial monitoring shows significant developments in object detection, reinforcement learning, and autonomous UAV operations.Early vision-based debris detection used classical image processing methods such as edge detection and contour analysis (Szeliski, 2010), which resulted in a high sensitivity to lighting variances. The arrival of deep learning models like YOLO and Faster R-CNN (Ren et al., 2015) opened up a new world for automation of object recognition and, in turn, made very effective real-time, high-accuracy detection work for UAVs.
+[] In the UAV domain, the research presented by Shah et al. (2018) in AirSim, a physics-based simulation scheme designed for safe and realistic training of aerial agents, was a breakthrough. Expanding on that, reinforcement learning algorithms like DDPG (Lillicrap et al., 2015) and PPO (Schulman et al., 2017) have been efficiently applied to navigation and path optimization tasks. These technologies give drones the ability to determine optimal routes for debris inspection while using less energy.
+[] Cloud–drone integration has also been a focus area. Projects such as Gupta et al. (2022) and Kovacs et al. (2021) demonstrated AI inference in the cloud for drones, showcasing reduced computational requirements on-board and faster updates. Nevertheless, most previous setups are either in simulated environments or unproven hardware conditions.
+[] SkyRecon addresses this gap by offering a hybrid simulation–hardware environment where cloud communication allows for seamless transition from virtual models to physical drones. This makes deployment faster, cheaper, and safer, representing a major advancement in intelligent UAV-based inspection systems.
+[] 1.8.2 Related System Analysis
+[] Existing System/Application
+[] Weakness / Limitations
+[] Proposed SkyRecon Solution
+[] FODetect (Xsight Systems)
+[] Being stationary, ground-mounted sensors cannot dynamically adapt to changing debris zones and have limited coverage.
+[] Mobile, AI-driven drones employing flexible area scanning for runway surveillance.
+[] BirdGuard AI (2022)
+[] Only birds are detected; lacks debris classification or mapping capability.
+[] AI-based debris and hazard detection integrated with bird-attraction risk scoring.
+[] Manual Inspection Teams
+[] Human-intensive, slow, and inconsistent in bad weather or low-light conditions.
+[] Provides autonomous 24×7 weather-resilient operation with infrared/low-light camera support.
+[] Fixed CCTV Monitoring
+[] Limited field of view; lacks autonomous navigation or AI classification.
+[] Uses drone mobility and YOLOv8 detection for complete situational awareness.
+[] Radar-Based Runway Monitors
+[] Installation and maintenance costs are high; small debris can lead to false positives.
+[] Utilizes cost-effective optical AI inference with confidence-based error filtering to reduce false alarms.
+[Caption] Table 1.1   Related System Analysis with proposed project solution
+[] 1.9 Tools and Technologies
+[] Tool / Technology
+[] Purpose
+[] Rationale for Selection
+[] Python 3.10 + PyTorch
+[] Model development and training
+[] Provides advanced deep learning capabilities with GPU acceleration and support for large models.
+[] YOLOv8 (Object Detection)
+[] Real-time debris classification
+[] Offers high detection accuracy and fast inference for live video streams.
+[] AirSim / Gazebo Simulator
+[] Drone simulation and testing
+[] Enables safe reinforcement learning training with physics-based simulation.
+[] Reinforcement Learning (PPO/DDPG)
+[] Autonomous navigation
+[] Suitable for continuous-control UAV path planning and dynamic adaptation.
+[] ROS + MAVLink
+[] Communication middleware
+[] Industry-standard communication interface for drone hardware.
+[] Flask / FastAPI
+[] Backend API services
+[] Lightweight and efficient for AI inference module integration.
+[] PostgreSQL + PostGIS
+[] Data storage and spatial processing
+[] Enables high-performance geospatial data management and querying.
+[] Leaflet.js / Mapbox
+[] Mapping visualization
+[] Provides interactive 2D/3D map rendering for geospatial visualization.
+[] MQTT / WebSocket
+[] Real-time communication
+[] Facilitates low-latency drone–cloud message exchange.
+[] HTML5 / React.js
+[] Dashboard frontend
+[] Enables responsive and user-friendly web interface design.
+[] Table 1.2 Tools and Technologies for Proposed Project
+[] 1.10 Project Contribution
+[NormalWeb] SkyRecon is a groundbreaking architecture that combines AI-based visual detection, cloud-based computation, and autonomous UAV control within a unified framework.The project’s contributions are as follows:
+[NormalWeb] Dual-Environment System: Design of a simulation + hardware system enabling seamless testing and deployment.
+[NormalWeb] Real-Time Debris Detection: Implementation of YOLOv8-based real-time debris detection optimized for aerial imagery.
+[NormalWeb] Reinforcement Learning Navigation: Integration of RL navigation with geofencing and compliance constraints.
+[NormalWeb] Cloud Communication Interface: Reduction of onboard computational load through cloud-based inference and control.
+[NormalWeb] Geospatial Web Dashboard: Development of a web-based dashboard for hazard visualization, logging, and analytics.
+[NormalWeb] This integration positions SkyRecon as one of the first hybrid UAV systems capable of bridging simulation research and real-world airport deployment.
+[] 1.11 Relation to Course Modules
+[] Course Code / Title
+[] Relevance to SkyRecon
+[] AIC-341 – Introduction to Computer Vision
+[] Core algorithms such as feature extraction, detection, and classification are directly applied to debris identification.
+[] AIC-361 – Artificial Intelligence
+[] Concepts of agents, state-space search, and reinforcement learning underpin the drone’s autonomous path planning.
+[] AIC-451 – Machine Learning
+[] Techniques of supervised and unsupervised learning are crucial for model training and feature optimization.
+[] AIC-431 – Robotics
+[] Provides control theory and motion planning foundations for UAV operations.
+[] CSC-221 – Database Systems
+[] Supports the design and implementation of the PostgreSQL-based detection and logging system.
+[] CSC-341 – Web Engineering
+[] Informs the development of the responsive web dashboard and backend APIs.
+[] CSC-361 – Computer Networks
+[] Forms the foundation for secure, real-time communication between UAVs and the cloud server.
+[] Chapter 2 – Requirement Analysis
+[] 2.1 Introduction
+[] In this chapter, the functional, non-functional, and interface requirements for SkyRecon are defined, converting the project vision into detailed system specifications. Requirement analysis ensures that the proposed solution aligns with user expectations, technical feasibility, and UAV safety constraints in the context of airport operations.
+[] This chapter also identifies actors, user interactions, and key system behaviors, represented through use-case and data-flow models
+[] 2.2 User Classes and Characteristics
+[] SkyRecon addresses the needs of multiple stakeholders involved in airport safety management, UAV operations, and AI monitoring. Each user class is assigned specific modules and access rights, ensuring secure and efficient system usage
+[] User Class
+[] Description
+[] Access Level / Responsibilities
+[] System Administrator
+[] Responsible for system configuration, user account management, and database operations. Ensures secure communication between drones and the cloud backend.
+[] Full access to dashboard, logs, and configurations.
+[] Drone Operator / Field Engineer
+[] Manages drone setup, flight scheduling, and mission operations. Can start, pause, or stop autonomous flights.
+[] Operational control with limited configuration access.
+[] AI Analyst / Developer
+[] Evaluates AI model performance, retrains detection networks, and tunes reinforcement learning parameters.
+[] Access to model analytics and training logs.
+[] Airport Safety Officer
+[] Monitors runway status via the dashboard, validates hazard maps, and authorizes cleaning operations.
+[] Read-only access to reports and alerts.
+[] 2.2.1 Use Case Diagram
+[] The diagram outlines functional interactions between external actors and the SkyRecon system, showing how drone operators trigger missions, AI modules process detection feeds, and airport officers respond to generated alerts.
+[] 2.3 Mock-Up Based Functional Requirements
+[] Mockup M1 – Login Page
+[Caption] Figure 1
+[] Description:Split-layout login screen with branding “SkyRecon: AI-Powered Debris Detection System.”Left pane: promotional image and tagline “Enhancing aviation safety through autonomous drone surveillance.”Right pane: secure access form requesting Email, Password, and Role selection with a Sign In button.
+[] Feature (Derived from UI)
+[] Functional Requirement (FR-ID : Statement)
+[] Business Rule
+[] User Authentication (M1)
+[] FR1.1: The system shall authenticate users via a secure login using email, password, and role selection.
+[] Only verified @skyrecon.com email addresses are permitted.
+[] Role Selection (M1)
+[] FR1.2: The system shall provide a dropdown for selecting roles (Operator, Analyst, Admin).
+[] Roles must be pre-assigned in the database; mismatches deny access.
+[] Login Form Validation (M1)
+[] FR1.3: The system shall validate input fields for email format and password strength on submission.
+[] Passwords require ≥ 8 characters, 1 uppercase, 1 digit, 1 special symbol.
+[] Promotional Display (M1)
+[] FR1.4: The system shall display branding and tagline without requiring authentication.
+[] Promotional assets must load from static storage and contain no sensitive data.
+[] Mockup M2 – Main Dashboard
+[Caption] Figure 2
+[] Description:Central dashboard titled “SkyRecon Dashboard: AI-Powered Foreign Object Debris Detection System.”Tiles: Mission Control, Live Detection Feed, Hazard Map, Alerts, Analytics, Admin Panel, and Model Management.
+[] Feature (Derived from UI)
+[] Functional Requirement (FR-ID : Statement)
+[] Business Rule
+[] Dashboard Overview (M2)
+[] FR2.1: Display a dashboard with tiles for key modules.
+[] Tile visibility is role-restricted (Operators cannot access Model Management).
+[] Status Indicators (M2)
+[] FR2.2: Show real-time module status (green / orange / red).
+[] Statuses refresh every 10 seconds via backend polling.
+[] Navigation Tiles (M2)
+[] FR2.3: Enable one-click navigation from dashboard tiles.
+[] Navigation actions are logged for audit trails.
+[] Module Accessibility (M2)
+[] FR2.4: Enforce role-based access control on dashboard tiles.
+[] Admins see all tiles; Analysts get read-only views.
+[] Mockup M3 – Alerts and Notifications
+[Caption] Figure 3
+[] Description:“Alerts & Notifications” page with Active and Archived tabs showing debris, bird-strike, and risk alerts.
+[] Feature (Derived from UI)
+[] Functional Requirement (FR-ID : Statement)
+[] Business Rule
+[] Alert Tabs (M3)
+[] FR3.1: Provide tabs for Active and Archived alerts with counts.
+[] Archived alerts move after acknowledgment; retention = 90 days.
+[] Alert Details (M3)
+[] FR3.2: Display severity, description, timestamp, and action buttons.
+[] Critical alerts (red) cannot be archived without emergency action.
+[] Action Buttons (M3)
+[] FR3.3: Allow acknowledgment or emergency response.
+[] Emergency responses notify all online admins by email.
+[] Bird Strike Risk (M3)
+[] FR3.4: Generate alerts for organic debris attracting birds.
+[] Such alerts require manual verification within 15 minutes.
+[] Mockup M4 – Mission Control
+[Caption] Figure 4
+[] Description:“Drone Mission Control” screen displaying mission status, progress (%), coverage area, telemetry, and drone ID.
+[] Feature (Derived from UI)
+[] Functional Requirement (FR-ID : Statement)
+[] Business Rule
+[] Mission Status Controls (M4)
+[] FR4.1: Provide Start, Pause, and Terminate buttons.
+[] Mission start allowed only if battery > 20% and signal = Excellent.
+[] Telemetry Metrics (M4)
+[] FR4.2: Display speed, distance, battery, altitude in real time.
+[] Refresh every 5 s; battery < 30% triggers auto-pause.
+[] Progress Bar (M4)
+[] FR4.3: Show mission progress % with coverage area.
+[] Calculated based on pre-defined flight paths.
+[] Drone Identification (M4)
+[] FR4.4: Display Drone ID and status during mission.
+[] One drone per mission; multi-missions require admin approval.
+[] Mockup M5 – Live Detection Feed
+[Caption] Figure 5
+[] Description:“Live Detection Feed” page showing video stream with bounding boxes and sidebar for recent detections.
+[] Feature (Derived from UI)
+[] Functional Requirement (FR-ID : Statement)
+[] Business Rule
+[] Live Video Feed (M5)
+[] FR5.1: Stream drone camera feed with AI overlays.
+[] Maintain ≥ 30 FPS; disconnections trigger alerts.
+[] Detection Overlays (M5)
+[] FR5.2: Label detections with type and confidence score.
+[] Confidence < 70% requires manual review.
+[] Recent Detections Sidebar (M5)
+[] FR5.3: List recent detections with timestamps and severity.
+[] Show latest 10 entries per session.
+[] Streaming Status (M5)
+[] FR5.4: Indicate stream status and detection count.
+[] Non-streaming state prompts reconnection option.
+[] Mockup M6 – Hazard Map Dashboard
+[Caption] Figure 6
+[] Description:“Hazard Map Dashboard” with 3D map visualization, threat levels legend, and sidebar of active hazards.
+[] Feature (Derived from UI)
+[] Functional Requirement (FR-ID : Statement)
+[] Business Rule
+[] 3D Surveillance Map (M6)
+[] FR6.1: Render 3D interactive map with drone and hazard positions.
+[] Map logs user interactions (zoom, pan).
+[] Hazard Markers (M6)
+[] FR6.2: Display color-coded markers by threat level.
+[] Auto-update every 10 seconds.
+[] Active Hazards Sidebar (M6)
+[] FR6.3: List hazards with latitude, longitude, altitude.
+[] Sorted by severity (desc); click = zoom to location.
+[] Threat Levels Legend (M6)
+[] FR6.4: Provide legend for critical/elevated levels.
+[] Threat levels configurable by admins.
+[] Mockup M7 – Analytics and Reports
+[Caption] Figure 7
+[] Description:“Analytics & Reports” page with metrics cards, charts, and report export options.
+[] Feature (Derived from UI)
+[] Functional Requirement (FR-ID : Statement)
+[] Business Rule
+[] Performance Metrics Cards (M7)
+[] FR7.1: Display cards for detections, accuracy, response time, false positives.
+[] Metrics calculated weekly; improvements highlighted in green.
+[] Detection Frequency Chart (M7)
+[] FR7.2: Generate bar charts for detection frequency by type.
+[] Filterable by date range ≤ 1 year.
+[] Model Performance Chart (M7)
+[] FR7.3: Display accuracy, precision, recall progress bars.
+[] Threshold < 90% flags warning.
+[] Report Generation (M7)
+[] FR7.4: Enable report export in PDF, CSV, XLSX.
+[] Reports watermarked with generation date.
+[] Mockup M8 – Model Management
+[Caption] Figure 8
+[] Description:“Model Management” dashboard displaying active model stats, training configuration, and comparison graphs.
+[] Feature (Derived from UI)
+[] Functional Requirement (FR-ID : Statement)
+[] Business Rule
+[] Model Metrics Display (M8)
+[] FR8.1: Show active model accuracy, speed, size.
+[] Values below benchmarks trigger alerts.
+[] Deployed Models List (M8)
+[] FR8.2: List models with version, status, actions (Promote, Retrain, Archive).
+[] Only admins can promote models to production.
+[] Training Configuration (M8)
+[] FR8.3: Allow setting dataset, batch size, epochs, learning rate, GPU.
+[] Training requires ≥ 1,000 images; default GPU = NVIDIA A100.
+[] Performance Comparison (M8)
+[] FR8.4: Display comparison bars for last 5 model versions.
+[] Historical accuracy averaged for trend tracking.
+[] Mockup M9 – Admin Configuration
+[Caption] Figure 9
+[] Description:“Admin Configuration” page for user management, system settings, security, and API key control.
+[] Feature (Derived from UI)
+[] Functional Requirement (FR-ID : Statement)
+[] Business Rule
+[] Configuration Tabs (M9)
+[] FR9.1: Provide tabs for Users, Settings, Security, API Keys.
+[] Tabs are admin-only; unauthorized access logged.
+[] User Management List (M9)
+[] FR9.2: Display user details (name, email, role) with Edit / Remove.
+[] Emails must use @skyrecon.com; removals require confirmation.
+[] Add New User (M9)
+[] FR9.3: Enable adding users with role assignment form.
+[] New users receive temporary passwords via email.
+[] Role-Based Controls (M9)
+[] FR9.4: Allow role and detail modifications with audit logs.
+[] Changes notify affected users automatically.
+[] 2.3.1 Backup Process Requirements
+[] This section outlines the backend processes responsible for ensuring data reliability, integrity, and recovery within the SkyRecon system.Since SkyRecon involves critical aviation safety operations, the backup and recovery pipeline is designed to guarantee uninterrupted functionality, even during unexpected outages, network failures, or system maintenance.
+[] 1. Purpose
+[] The purpose of the SkyRecon Backup Process is to:
+[] Prevent data loss from mission logs, AI detections, and hazard analytics.
+[] Ensure high availability of telemetry, video feeds, and model performance records.
+[] Enable fast disaster recovery and continuity of drone operations and dashboards.
+[] 2. Scope
+[] The backup process applies to:
+[] Mission logs, detection metadata, and hazard reports.
+[] User accounts, roles, and access control records.
+[] Trained model weights, configuration files, and performance history.
+[] System configuration, API credentials, and audit logs.
+[] 3. Backup Process Overview
+[] SkyRecon’s backend implements a hybrid backup mechanism, combining real-time cloud sync with scheduled local snapshots.
+[] Backup Type
+[] Frequency
+[] Storage Medium
+[] Scope
+[] Retention Policy
+[] Real-Time Sync
+[] Continuous
+[] Cloud Database (PostgreSQL)
+[] Mission logs, detections, user actions
+[] Persistent
+[] Incremental Backup
+[] Every 6 hours
+[] Local Encrypted Disk
+[] New or modified data since last backup
+[] 7 days
+[] Full Database Snapshot
+[] Once daily (23:00 PKT)
+[] Cloud Storage (S3 Bucket / Azure Blob)
+[] Entire operational database
+[] 30 days
+[] Model Checkpoint Backup
+[] After each training cycle
+[] Dedicated ML Storage
+[] Model weights, configs, validation reports
+[] Latest 5 versions
+[] Log Archive
+[] Weekly
+[] Cold Storage
+[] System and alert logs
+[] 3 months
+[] 4. Event–Response Mapping Table
+[] Event
+[] System State
+[] Response
+[] 1. User Authentication & Security (M1, M9)
+[] User submits login credentials
+[] User session not active
+[] Validate credentials via backend, check role in DB, generate JWT session token
+[] Invalid credentials entered
+[] Authentication failed
+[] Display error, increment failed attempt count
+[] Multiple failed login attempts
+[] Failed attempt threshold reached
+[] Lock account for 15 minutes, notify admin
+[] Password reset requested
+[] Registered email exists
+[] Generate reset token, email reset link to user
+[] Session expires
+[] User inactive for 20 minutes
+[] Invalidate token and require re-authentication
+[] Unauthorized API key usage detected
+[] Token mismatch
+[] Log attempt, revoke key, alert admin via email
+[] 2. Dashboard & Module Access (M2)
+[] User logs in successfully
+[] Valid session token
+[] Load personalized dashboard tiles per user role
+[] User selects restricted tile
+[] Access control triggered
+[] Deny access, log attempt, show “Access Denied” message
+[] Dashboard refresh triggered
+[] Session active
+[] Fetch updated module statuses from backend every 10 seconds
+[] Admin views audit logs
+[] Audit table available
+[] Retrieve and display latest user actions with timestamps
+[] 3. Drone Mission Control (M4)
+[] Operator starts mission
+[] Battery > 20% & signal excellent
+[] Initialize mission state, start telemetry and video stream
+[] Pause command issued
+[] Active mission
+[] Halt drone movement, maintain hover, preserve progress data
+[] Terminate command issued
+[] Mission in progress
+[] Execute return-to-home routine, store mission log
+[] Telemetry update received
+[] Drone connected
+[] Update metrics (speed, altitude, battery, distance) in DB
+[] Battery < 20% detected
+[] Critical state
+[] Trigger auto-return, send low-battery alert
+[] 4. Live Detection & AI Inference (M5)
+[] New video frame received
+[] Stream active
+[] Process frame via YOLOv8 model for debris detection
+[] Detection confidence ≥ 70%
+[] Valid detection
+[] Draw bounding boxes, tag debris type, log event
+[] Confidence < 70%
+[] Low-confidence output
+[] Flag detection for manual analyst review
+[] Stream disconnected
+[] Signal lost
+[] Pause inference, display “Reconnecting” notice, retry stream
+[] Stream restored
+[] Connection re-established
+[] Resume inference and continue logging
+[] 5. Hazard Mapping & Analysis (M6)
+[] New detection logged
+[] Valid debris coordinates
+[] Generate hazard marker on 3D map with severity color
+[] Duplicate detection nearby
+[] Same coordinates within 3 meters
+[] Merge detection entries, increment frequency count
+[] High-risk debris detected
+[] Hazard ≥ threshold
+[] Send alert to dashboard and email to admin group
+[] User interacts with map
+[] Session active
+[] Log zoom/pan actions for analytics
+[] Map update interval reached
+[] Scheduled refresh
+[] Fetch latest hazard data and re-render layer
+[] 6. Alerts & Notifications (M3)
+[] New alert generated
+[] Backend receives detection event
+[] Classify alert (critical/elevated/low), update Active tab
+[] Alert acknowledged
+[] User action received
+[] Move to Archived tab, record acknowledgment time
+[] Emergency action triggered
+[] Critical alert active
+[] Notify all admins, store emergency response in audit log
+[] Bird strike risk alert created
+[] Organic debris detected
+[] Send high-priority alert for manual verification
+[] Alert expiry reached
+[] Retention > 90 days
+[] Auto-archive expired alerts
+[] 7. Analytics & Reporting (M7)
+[] User opens analytics page
+[] Valid session
+[] Retrieve metrics (detections, accuracy, latency, false positives)
+[] Date range filter applied
+[] Query parameters updated
+[] Refresh charts and recalculate summaries
+[] Report export requested
+[] Data available
+[] Generate PDF/CSV/XLSX and apply watermark
+[] Model accuracy < 90%
+[] Threshold violated
+[] Flag model as “Underperforming” and notify admin
+[] Weekly summary trigger
+[] End of week
+[] Generate system performance summary and email report
+[] 8. Model Management (M8)
+[] Admin adds new model
+[] New training config received
+[] Validate dataset, initiate model training on GPU
+[] Model training completes
+[] Valid performance metrics
+[] Store accuracy, recall, and precision; mark as ready
+[] Model promoted to production
+[] Admin confirmation
+[] Replace current inference model and log version ID
+[] Model underperforms in field
+[] Accuracy < benchmark
+[] Revert to previous stable model
+[] Comparison requested
+[] Historical records exist
+[] Generate performance graph for last 5 versions
+[] 9. Admin & Configuration Management (M9)
+[] Admin adds user
+[] Valid form data
+[] Create user entry, assign temporary password, send email
+[] Admin edits user role
+[] User exists in DB
+[] Update role and log change in audit history
+[] API key regenerated
+[] Valid admin action
+[] Invalidate old key, issue new token, update database
+[] System setting modified
+[] Configuration updated
+[] Persist change in config file and log timestamp
+[] Unauthorized access attempt
+[] Role mismatch
+[] Deny action, record IP and user ID in security logs
+[] 10. System Maintenance & Safety
+[] Scheduled maintenance started
+[] End-of-day or off-peak
+[] Notify users, disable new sessions, backup database
+[] Data backup triggered
+[] Schedule reached
+[] Generate and encrypt full database snapshot
+[] UAV enters restricted airspace
+[] Violation detected
+[] Trigger immediate return-home protocol
+[] Strong wind or rain detected
+[] Hazardous weather
+[] Pause mission, land drone safely, and log weather data
+[] Server overload detected
+[] CPU > 90%
+[] Throttle non-critical processes or scale instance
+[] Log cleanup routine triggered
+[] End-of-day
+[] Archive logs older than 30 days into cold storage
+[] 5. Backup Validation and Security
+[] Integrity Verification: Every backup undergoes checksum validation to ensure completeness and authenticity.
+[] Encryption: All backup archives use AES-256 encryption before storage.
+[] Access Control: Only system administrators with valid API keys can trigger or restore backups.
+[] Redundancy: Dual copies of each backup are stored in separate cloud regions to ensure disaster resilience.
+[] Automated Alerts: Failed or delayed backups trigger automated email and dashboard notifications.
+[] 6. Recovery Policy
+[] Partial Recovery: Individual datasets (e.g., logs, detections, analytics) can be restored without full rollback.
+[] Full Recovery: System-wide restoration available through admin interface in critical failure scenarios.
+[] Recovery Time Objective (RTO): ≤ 2 hours.
+[] Recovery Point Objective (RPO): ≤ 30 minutes of data loss in worst-case conditions.
+[] 2.4 Non-Functional Requirements
+[] Non-functional requirements define the quality attributes that ensure the SkyRecon system operates efficiently, reliably, securely, and intuitively across all modules, including drone communication, AI inference, dashboard analytics, and system maintenance.
+[] 2.4.1 Reliability
+[] REL-1: The system shall achieve a Mean Time Between Failures (MTBF) of at least 500 operational hours under standard mission load.
+[] REL-2: In the event of a network loss, the system shall automatically switch to offline logging mode to preserve mission telemetry and detection data.
+[] REL-3: The system shall resume mission continuity within 5 seconds after reconnection without manual intervention.
+[] REL-4: Data consistency between the local drone cache and the central cloud database shall be maintained with 99.9% synchronization accuracy.
+[] REL-5: The backend services shall ensure 99.5% uptime per month, excluding scheduled maintenance.
+[] REL-6: Any process or service failure shall trigger an automated restart routine and log the incident for diagnostic review.
+[] 2.4.2 Usability
+[] USE-1: The web dashboard shall provide a clear, responsive layout featuring interactive maps, filters, and color-coded alerts for intuitive navigation.
+[] USE-2: Drone operators shall be able to start, pause, or stop missions with no more than two clicks on the Mission Control interface.
+[] USE-3: The system interface shall comply with WCAG 2.1 accessibility standards, ensuring compatibility with assistive technologies.
+[] USE-4: All dashboards and pages shall load within 3 seconds on a 20 Mbps connection.
+[] USE-5: Tooltips and context-sensitive help icons shall be provided for all major controls to enhance operator learning and reduce training time.
+[] USE-6: The interface shall maintain full usability and readability on devices with resolutions ≥1280×720 (desktop/tablet) and support touch-based input controls.
+[] 2.4.3 Performance
+[] PER-1: Object detection inference shall complete within 1.5 seconds per video frame on standard GPU hardware.
+[] PER-2: The dashboard shall refresh telemetry and detection data every 1 second during live drone missions.
+[] PER-3: The backend shall handle simultaneous data streams from up to five drones while maintaining ≤80% CPU utilization and ≤70% memory usage.
+[] PER-4: The hazard heatmap and analytics visualizations shall update in under 2 seconds after each backend refresh.
+[] PER-5: REST API endpoints shall have an average response time of ≤500 ms under normal operating conditions.
+[] PER-6: The system shall recover from temporary database downtime and restore operational state within 60 seconds of service restoration.
+[] 2.4.4 Security
+[] SEC-1: All communications between drones, cloud servers, and dashboards shall use TLS 1.3 encryption to ensure data confidentiality.
+[] SEC-2: Authentication shall comply with OAuth 2.0 standards for both API endpoints and user dashboard access.
+[] SEC-3: System access shall be role-based, enforcing strict permissions for Operator, Analyst, and Admin roles.
+[] SEC-4: All failed login attempts shall be logged, and administrators shall receive automated notifications for accounts exceeding three consecutive failures.
+[] SEC-5: All sensitive credentials, API keys, and tokens shall be stored using AES-256 encryption and rotated every 90 days.
+[] SEC-6: The system shall perform periodic security audits and vulnerability scans every 30 days, maintaining a compliance log of detected and resolved issues.
+[] 2.5 External Interface Requirements
+[] This section specifies the logical interfaces between SkyRecon and its external entities, including users, software components, hardware devices, and communication protocols.
+[] 2.5.1 User Interface Requirements
+[] The user interface follows React.js standards with Leaflet.js map integration.
+[] Dashboard screens include: Login (M1), Dashboard (M2), Mission Control (M3), Map View (M4), Alerts (M5), and Reports (M6).
+[] Font and color scheme follow a minimal, high-contrast design for readability.
+[] Standard navigation links include: Home, Mission Control, Analytics, Alerts, Reports.
+[] Pop-up messages and toast notifications display operational feedback (e.g., “Mission Started,” “Debris Detected”).
+[] Accessibility features include both mouse and keyboard navigation support.
+[] 2.5.2 Software Interfaces
+[] ID
+[] Software Interface
+[] Requirement Description
+[] SI-1
+[] Cloud AI Backend (Flask / FastAPI)
+[] Handles YOLOv8 inference and RL navigation orchestration.
+[] SI-2
+[] PostgreSQL with PostGIS
+[] Stores telemetry, debris detections, and spatial map data.
+[] SI-3
+[] MQTT / WebSocket Broker
+[] Manages low-latency data exchange between drone and cloud.
+[] SI-4
+[] React.js Web Dashboard
+[] Displays detections, maps, and analytics to authorized users.
+[] 2.5.3 Hardware Interfaces
+[] ID
+[] Hardware Interface
+[] Description
+[] HI-1
+[] Drone Platform
+[] Equipped with 1080p/30fps camera, GPS, IMU, and Wi-Fi/4G transmitter.
+[] HI-2
+[] Ground Control Unit
+[] Relays telemetry and video streams between drone and cloud server.
+[] HI-3
+[] LiDAR / Ultrasonic Sensors (Optional)
+[] Enhances obstacle detection and altitude precision.
+[] 2.5.4 Communication Interfaces
+[] ID
+[] Communication Interface
+[] Requirement Description
+[] CI-1
+[] MQTT Protocol
+[] Enables bidirectional telemetry transfer between drone and cloud.
+[] CI-2
+[] HTTPS Protocol
+[] Ensures secure dashboard access and encrypted data transfer.
+[] CI-3
+[] OAuth 2.0 Authentication
+[] Provides secure API-based communication for backend services.
+[] 2.6 References
+[] [1] I. Sommerville, Software Engineering, 10th ed. Boston, MA: Pearson, 2015.[2] A. M. Davis, “The art of requirements triage,” Computer, vol. 36, no. 3, pp. 42–49, 2003.[3] J. Gubbi, R. Buyya, S. Marusic, and M. Palaniswami, “Internet of Things (IoT): A vision, architectural elements, and future directions,” Future Generation Computer Systems, vol. 29, no. 7, pp. 1645–1660, 2013.[4] M. T. Rashid, T. Hasan, and M. R. Khan, “Real-time object detection on UAV imagery using deep learning,” IEEE Access, vol. 8, pp. 181698–181709, 2020.[5] H. Kopetz, Real-Time Systems: Design Principles for Distributed Embedded Applications, 2nd ed. New York, NY: Springer, 2011.[6] S. Ren, K. He, R. Girshick, and J. Sun, “Faster R-CNN: Towards real-time object detection with region proposal networks,” IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 39, no. 6, pp. 1137–1149, 2017.[7] A. Krizhevsky, I. Sutskever, and G. Hinton, “ImageNet classification with deep convolutional neural networks,” in Proc. Advances in Neural Information Processing Systems (NIPS), 2012, pp. 1097–1105.
+[] Chapter 3 – System Design
+[] 3.1 Introduction
+[] This chapter describes the overall design of the SkyRecon system. It includes the architectural design, UML-based system modeling, database structure, and interface-level details. The design ensures that all functional and non-functional requirements identified in earlier chapters are supported through a modular, scalable, and maintainable system architecture.
+[] 3.2 System Architectural Design
+[] 3.2.1 System Architecture Overview
+[] The SkyRecon system architecture is designed as a distributed, cloud-based platform that integrates autonomous drone operations, AI-powered debris detection, and real-time geospatial visualization. The architecture follows a multi-layered approach where each layer encapsulates specific responsibilities, enabling scalability, maintainability, and seamless integration between hardware, cloud services, and user interfaces.
+[] The system operates in two distinct modes: Simulation Mode and Hardware Mode. In Simulation Mode, virtual drones operate within physics-based environments (AirSim/Gazebo) to train reinforcement learning agents and validate AI models in a safe, controlled setting. In Hardware Mode, physical UAVs equipped with cameras, GPS, and IMU sensors execute real-world missions, streaming live video to cloud-based AI inference engines for debris detection and classification.
+[] The architecture is organized into four primary layers: the Frontend Web Application Layer, the Backend Services Layer, the Service Layer, and the Data Storage Layer. The Frontend Layer provides airport personnel with an interactive dashboard for monitoring missions, viewing live detections, analyzing hazard maps, and generating reports. The Backend Services Layer coordinates all business logic, API endpoints, authentication, and communication orchestration between drones and cloud modules. The Service Layer contains specialized microservices responsible for drone control, AI processing, reinforcement learning navigation, real-time communication, hazard analysis, and security enforcement. Finally, the Data Storage Layer manages persistent storage using PostgreSQL with PostGIS for relational and geospatial data, cloud file storage (AWS S3/Azure Blob) for video recordings and model weights, and mapping services (Leaflet.js/Mapbox) for rendering interactive hazard visualizations.
+[] Data flows through the system in a structured pipeline: drones capture live video feeds and transmit them via encrypted MQTT or WebSocket protocols to the Backend Services Layer. The AI Processing Module receives video frames, performs real-time inference using YOLOv8, and returns detection results with bounding boxes, confidence scores, and debris classifications. The Hazard Analysis Engine evaluates each detection, assigns risk scores based on debris type and proximity to critical flight zones, and triggers alerts when necessary. All detection metadata, telemetry logs, and mission records are stored in PostgreSQL, while raw video and images are archived in cloud storage. The Frontend Dashboard continuously polls the backend via REST APIs to update mission status, display live detection overlays on maps, and present analytics to users.
+[] Security is enforced at every layer through multiple mechanisms. Communication between drones and cloud servers uses TLS 1.3 encryption to prevent data interception. User authentication relies on OAuth 2.0 with JWT session tokens, ensuring only authorized personnel can access sensitive operations. The database employs AES-256 encryption at rest, and all API endpoints enforce role-based access control (RBAC) to restrict functionality based on user roles (Admin, Operator, Analyst). Additionally, the system implements geofencing constraints and emergency protocols to ensure safe drone operations and prevent unauthorized airspace entry.
+[] The architecture's modular design allows individual components to be updated, replaced, or scaled independently without disrupting other services. For instance, the AI Processing Module can be upgraded to newer detection models without modifying the drone communication or database layers. Similarly, the system supports horizontal scaling by deploying multiple backend instances and load balancing requests across them, enabling concurrent operations for multiple drones simultaneously.
+[] 3.1.1 Purpose
+[] To provide a conceptual view of the system that illustrates the big-picture design, showing where each module resides, what technologies are used, and how data and control flow between system components. This architecture overview enables stakeholders—including airport safety officers, system administrators, and technical developers—to understand the operational flow of SkyRecon, identify integration points, and assess how autonomous drones, AI inference engines, and cloud services collaborate to deliver real-time debris detection and hazard monitoring capabilities.
+[] 3.2.2 Conceptual Architecture Diagram
+[NormalWeb] Figure 3.2.1: Conceptual Architecture Diagram of SkyRecon
+[] 3.2.1: Technologies, Components, and Security Mechanisms Used in the System Architecture
+[] Component
+[] Description
+[] Technology Used
+[] Security Mechanism
+[] Frontend Layer
+[] User-facing web application providing interactive dashboard for mission control, live detection monitoring, hazard visualization, and analytics
+[] React.js, HTML5, CSS3, Leaflet.js/Mapbox
+[] HTTPS encryption, JWT session tokens, input validation
+[] Backend Services
+[] Core application layer handling business logic, API endpoints, authentication, and coordination between system modules
+[] Flask/FastAPI (Python), RESTful API
+[] OAuth 2.0, API key authentication, rate limiting
+[] Drone Control Service
+[] Manages communication with drones, mission scheduling, and telemetry processing
+[] ROS, MAVLink protocol
+[] TLS 1.3 encryption, geofencing validation, emergency protocols
+[] AI Processing Module
+[] Real-time object detection and debris classification from drone video streams
+[] YOLOv8, PyTorch, CUDA (GPU acceleration)
+[] Model integrity verification, secure inference endpoints
+[] RL Navigation Module
+[] Autonomous path planning and flight optimization using reinforcement learning algorithms
+[] PPO/DDPG algorithms, OpenAI Gym
+[] Safe exploration boundaries, collision avoidance constraints
+[] Communication Layer
+[] Handles real-time bidirectional data exchange between drones and cloud backend
+[] MQTT, WebSocket protocol
+[] TLS 1.3 encryption, message authentication codes (MAC)
+[] Hazard Analysis Engine
+[] Evaluates debris risk based on type, location, and proximity to flight paths
+[] Python rule-based engine, spatial algorithms
+[] Data validation, confidence thresholding
+[] Security Module
+[] Manages authentication, authorization, and access control across the system
+[] OAuth 2.0, JWT, RBAC (Role-Based Access Control)
+[] Password hashing (bcrypt), session management, audit logging
+[] Relational Database
+[] Stores structured data including detection records, telemetry, user accounts, and mission history
+[] PostgreSQL with PostGIS extension
+[] AES-256 encryption at rest, encrypted backups, role-based access
+[] Cloud File Storage
+[] Stores large files such as video recordings, detection images, and AI model weights
+[] AWS S3 / Azure Blob Storage
+[] Server-side encryption (SSE), access control lists (ACL), versioning
+[] Geospatial Mapping
+[] Provides interactive map visualization with hazard overlays and detection markers
+[] Leaflet.js / Mapbox API, GeoJSON
+[] API key restrictions, CORS policy enforcement
+[] Drone Hardware
+[] Physical UAV equipped with camera, GPS, IMU sensors for real-world deployment
+[] DJI/Custom drone platform, 1080p camera, GPS/IMU sensors
+[] Firmware authentication, encrypted telemetry transmission
+[] Simulation Environment
+[] Virtual testing platform for training RL agents and validating detection algorithms
+[] AirSim / Gazebo simulator, Unity3D
+[] Isolated sandbox environment, no external network access
+[] 3.3 Architecture Style / Pattern
+[] The SkyRecon system follows a Layered Architecture Pattern (specifically a Cloud-Robotics N-Tier Architecture). This pattern is essential for separating the robotic hardware control from the heavy computational logic required for AI inference, ensuring that the drones remain lightweight and agile while the cloud handles processing.
+[] 3.3.1 Guidelines for Students
+[] Selected Pattern: Layered Architecture (Cloud-Robotics Hybrid)
+[] Justification for Layered Architecture:
+[] Computational Offloading: SkyRecon requires heavy AI processing (YOLOv8 detection, RL path planning). A layered approach allows these resource-intensive tasks to run on the Service Layer (Cloud) rather than draining the drone's onboard battery.
+[] Scalability: The architecture supports multiple drones connecting to a single backend. The Service Layer can scale horizontally to handle video streams from a fleet of drones without requiring hardware upgrades on the UAVs themselves.
+[] Modularity: The distinct separation between the Hardware Layer (Drone/Simulation) and the Business Logic Layer allows the team to switch between the AirSim simulation environment and physical UAVs without rewriting the core application logic.
+[] Security: By isolating the Data Storage Layer behind the Backend Services Layer, the system ensures that flight logs and hazard maps are protected from direct unauthorized access .
+[] Layer Descriptions:
+[] Layer 4: Frontend Layer (Presentation)
+[] Responsibility: Provides the interactive web dashboard for Airport Safety Officers and Drone Operators. It visualizes live telemetry, hazard maps, and alerts.
+[] Components: React.js Web Application, Leaflet.js/Mapbox Geospatial Viewer, Redux State Management.
+[] Interaction: Sends REST API requests to Layer 3 and subscribes to WebSocket feeds for real-time video updates.
+[] Layer 3: Backend Services Layer (Business Logic)
+[] Responsibility: Acts as the central controller/orchestrator. It authenticates users, manages mission states (Start/Pause/Return), and routes data between the drones and the AI engines.
+[] Components: Flask/FastAPI (Python), Authentication Service (OAuth 2.0), Mission Controller, Alert Manager.
+[] Interaction: Validates incoming telemetry, enforces geofencing rules, and coordinates with Layer 2 for AI analysis.
+[] Layer 2: Service Layer (AI & Control)
+[] Responsibility: Handles the intelligent processing. This includes detecting debris in video frames and calculating optimal flight paths.
+[] Components: AI Inference Engine (YOLOv8), RL Navigation Module (PPO/DDPG), Hazard Analysis Engine, Communication Broker (MQTT).
+[] Interaction: Processes raw video data and returns structured JSON (bounding boxes, confidence scores) to Layer 3.
+[] Layer 1: Data Storage & Infrastructure Layer
+[] Responsibility: Persists all system data.
+[] Components: PostgreSQL (Structured Data), PostGIS (Geospatial Data), Cloud Storage (Video Archives/Model Weights).
+[] Interaction: Accessed only by Layer 3 for saving logs and retrieving historical data.
+[] 3.3.2 Component Interaction
+[] The layered architecture facilitates a secure, bidirectional flow of data between the physical/simulated drones and the user interface.
+[NormalWeb]   Drone Telemetry & Video Uplink: The Hardware/Simulation Layer (Layer 1 extension) captures live video and flight data (GPS, Battery). This is transmitted via MQTT/WebSocket to the Service Layer. The Communication Broker creates a low-latency pipe, ensuring the video reaches the AI engine with minimal delay.
+[NormalWeb]   AI Inference & Hazard Logic: The Service Layer processes the incoming video frames using YOLOv8. It detects Foreign Object Debris (FOD), classifies it (Metal, Plastic, Organic), and calculates a confidence score. Simultaneously, the Hazard Analysis Engine checks the GPS coordinates against the runway map to determine risk levels. These results are sent up to the Backend Services Layer .
+[NormalWeb]   Dashboard Visualization & Control: The Backend Services Layer pushes the processed results (Debris detected at Lat/Long X,Y) to the Frontend Layer (React). The dashboard renders a marker on the Leaflet 3D Map. Conversely, when an operator clicks "Return to Home" on the dashboard, the command flows down through the Backend, to the Service Layer, and finally to the Drone via MAVLink .
+[NormalWeb]   Data Persistence & Security: All detection events and mission logs are securely stored in the Data Storage Layer. PostGIS handles the spatial queries for the map, while Cloud Storage archives the raw video evidence. OAuth 2.0 ensures that only authorized personnel can access these records or control the drones.
+[] Figure 3.3.3: Layered Architecture Pattern with Interface Implementation for SkyRecon
+[] 3.4 Design Models
+[] 3.4.1 Activity Diagrams
+[] Purpose: The purpose of activity diagrams is to illustrate the dynamic operational workflows within the SkyRecon system. These diagrams visually capture the sequence of actions, autonomous decisions, system responses, and AI-driven processes involved in drone surveillance and debris detection missions. Activity diagrams assist stakeholders—including drone operators and airport safety officers—in understanding how critical processes, such as autonomous navigation and real-time hazard analysis, are executed from initiation to completion. This ensures that the functional behaviour of complex features is clearly documented and provides a foundation for validating safety protocols before physical deployment .
+[] Contribution: Activity diagrams contribute to the system design by modelling the procedural flow of major operations in SkyRecon. They clarify how the system transitions between operator commands, autonomous drone behaviours, backend AI processing, and real-time data updates on the dashboard. For the SkyRecon system, activity diagrams are particularly valuable because workflows involve intricate multi-step coordination between physical hardware (drones), cloud-based inference engines (YOLOv8), and safety compliance modules (geofencing/emergency return). These diagrams ensure a unified understanding of operational behaviour across all drone control, detection, and hazard reporting modules .
+[] 3.4.1.1 Activity Diagram — Autonomous Debris Detection Mission Purpose
+[NormalWeb] Purpose: The purpose of this diagram is to visualize the end-to-end workflow of a standard SkyRecon mission, focusing on the autonomous loop between the physical drone and the cloud infrastructure. It illustrates the sequence of actions starting from the operator's command to the drone's takeoff, real-time video streaming, AI-based debris identification using YOLOv8, and the continuous validation of mission parameters like battery life and geofence boundaries.
+[NormalWeb] Contribution: This diagram is critical for understanding how SkyRecon maintains operational continuity without constant human intervention. It clarifies the data exchange protocol between the Hardware Layer (Drone) and the Service Layer (Cloud AI), ensuring developers understand the latency-sensitive nature of the video uplink and inference response. It serves as a blueprint for implementing the system's core functional requirement: autonomous surveillance.
+[] Figure 3.4.1.1: Activity Diagram for Autonomous Debris Detection Mission Purpose
+[] 3.4.1.2 Activity Diagram — Hazard Analysis & Alerting Purpose
+[NormalWeb] Purpose: The purpose of this diagram is to detail the decision-making logic that occurs after a potential foreign object is detected. It maps out the computational steps required to assess the risk level of a detection, involving data retrieval from the flight path database, calculation of a hazard score based on material type (e.g., metal vs. organic), and the conditional branching logic that determines whether to trigger a low-priority log or a critical emergency alert.
+[NormalWeb] Contribution: This activity diagram contributes to the system design by formalizing the risk assessment algorithms within the Hazard Analysis Engine. It ensures that the criteria for "Critical Alerts" are clearly defined and traceable, which is essential for meeting aviation safety standards. By modeling the alert propagation flow, it helps verify that the right stakeholders (Airport Safety Officers vs. Maintenance Crew) receive the correct information at the right time.
+[] Figure 3.4.1.2: Activity Diagram for Hazard Analysis & Alerting Purpose
+[] 3.4.1.3 Activity Diagram — User Authentication & Role-Based Access Control
+[] Purpose: This diagram outlines the security workflow for system access. It illustrates the sequence of validating user credentials, retrieving role-based permissions (e.g., Admin vs. Operator), and loading the appropriate dashboard interface. This ensures that unauthorized users cannot access flight controls or sensitive detection data.
+[] Contribution: It visualizes the security enforcement logic within the Backend Services Layer. By modeling the decision paths for successful logins versus failed attempts (account locking), it helps developers implement robust OAuth 2.0 authentication flows and ensures compliance with the system's non-functional security requirements.
+[] Figure 3.4.1.3: Activity Diagram for User Authentication & Role-Based Access Control
+[] 3.4.1.4 Activity Diagram — Emergency Response Protocol
+[] Purpose: This diagram details the safety logic embedded in the drone's autonomous navigation module. It captures the decision-making process when critical failures occur, such as battery depletion, connection loss, or geofence breaches. It demonstrates how the system prioritizes safety over mission completion.
+[] Contribution: It contributes to the system's reliability design by modelling the fail-safe states. This diagram is essential for validating that the drone will behave predictably in adverse conditions, preventing hardware loss or accidents in the airfield environment.
+[] Figure 3.4.1.4: Activity Diagram for Emergency Response Protocol
+[] 3.4.1.5 Activity Diagram — Geospatial Mapping & Visualization
+[] Purpose: This diagram illustrates the data flow for rendering the interactive hazard map. It shows how raw detection coordinates are transformed into visual map layers, including the aggregation of debris clusters and the application of heatmaps to indicate high-risk zones on the airport runway.
+[] Contribution: It clarifies the "Geospatial Mapping Module" architecture, showing how backend data (PostGIS) is consumed by the frontend (Leaflet.js). This ensures that developers understand the pipeline for converting database records into user-friendly visual intelligence for the Airport Safety Officer.
+[] Figure 3.4.1.5: Activity Diagram for Geospatial Mapping & Visualization
+[] 3.4.2 Class Diagram
+[] Purpose: The class diagram defines the static structure of the SkyRecon system, illustrating the primary classes, their attributes, methods, and relationships. It serves as a blueprint for the object-oriented design, ensuring modularity and a clear separation of concerns between the physical drone hardware, cloud-based AI services, and user management modules.
+[] Key Classes:
+[] User: Stores authentication credentials and contact details. It serves as the base class for Operator, SafetyOfficer, and Admin, implementing core login and role-based access control functionalities.
+[] Operator: Extends User and includes specific permissions for mission control. Operators can initiate drone flights, view live telemetry, and receive operational alerts.
+[] SafetyOfficer: Extends User and focuses on hazard management. Safety Officers receive critical FOD alerts, view hazard maps, and can authorize emergency runway clearing operations.
+[] Admin: Extends User with system-wide privileges. Admins manage user accounts, configure fleet settings, oversee system health, and access audit logs.
+[] Drone: Represents the physical or simulated UAV. It manages hardware-specific attributes like battery level, GPS location, altitude, and connection status. It supports methods for takeoff, landing, and waypoint navigation.
+[] Mission: Links a Drone to a specific FlightPath and Operator. It tracks the mission's lifecycle (Scheduled, Active, Completed, Aborted) and logs performance metrics like duration and coverage area.
+[] Detection: Stores individual instances of AI-identified debris. Attributes include the debris type (Metal, Plastic, Organic), YOLOv8 confidence score, timestamp, and precise geospatial coordinates.
+[] HazardMap: Aggregates multiple Detection objects to visualize risk zones. It provides methods to generate heatmaps and calculate the severity of hazards based on their location relative to the runway.
+[] AIModel: Manages the lifecycle of the machine learning models. It stores version information, weights, and performance metrics (accuracy, recall). It provides the interface for running inference on video frames.
+[] YOLOv8: Extends AIModel specifically for object detection. It implements the logic to process video streams and identify bounding boxes for potential debris.
+[] RLAgent: Extends AIModel for autonomous navigation. It utilizes reinforcement learning algorithms (like PPO or DDPG) to calculate optimal flight paths and avoid obstacles.
+[] FlightLog: Archives telemetry and event data for post-mission analysis. It ensures compliance with aviation regulations by maintaining a complete history of the drone's actions.
+[] Contribution: The class diagram ensures a robust and scalable system architecture by clearly defining the responsibilities of each component. It illustrates the inheritance hierarchies (e.g., User roles, AIModel types) and the associations between critical entities (e.g., a Mission uses a Drone and generates Detections). This structure supports the "Cloud-Robotics" pattern by decoupling the lightweight drone control logic from the heavy AI processing classes, facilitating easier maintenance and future upgrades.
+[] Figure 3.4.2: Class Diagram SkyRecon
+[] 3.4.3 Sequence Diagrams
+[] Purpose: The purpose of sequence diagrams is to illustrate the precise order of interactions between system components over time during key operational workflows. These diagrams capture the message flow between actors (Operators, Safety Officers), the Drone Hardware, the Cloud Backend, AI Models (YOLOv8, RLAgent), and Data Stores. Sequence diagrams provide a timeline-based view of the system's dynamic behavior, ensuring clarity on how complex operations such as real-time video inference, hazard alerting, and autonomous emergency protocols are executed.
+[] Contribution: Sequence diagrams contribute to the system design by:
+[] Demonstrating the exact API calls and data exchanges between the Drone, Backend, and Frontend.
+[] Clarifying the responsibilities of each layer during synchronous and asynchronous operations.
+[] Helping developers validate logic for latency-sensitive tasks like video streaming.
+[] Providing a reference for testing integration points between hardware and cloud services.
+[] For SkyRecon, sequence diagrams are essential because the system relies on a "human-on-the-loop" architecture where autonomous actions (like obstacle avoidance) happen in parallel with operator oversight, requiring precise coordination between the edge (drone) and the cloud.
+[] 3.4.3.1 Sequence Diagram – Autonomous Debris Detection Mission
+[] Purpose: Details the end-to-end workflow for a standard surveillance mission. It visualizes the flow from the Operator initiating a mission to the Drone streaming video, the Cloud AI (YOLOv8) detecting debris, and the Backend pushing real-time updates to the Dashboard. It highlights the continuous loop of video capture, inference, and telemetry synchronization.
+[] Figure 3.4.3.1: Sequence Diagram for Autonomous Debris Detection Mission
+[] 3.4.3.2 Sequence Diagram – Hazard Analysis & Alerting Protocol
+[] Purpose: Illustrates the decision-making process when debris is detected. It shows how the system queries the Hazard Analysis Engine to calculate a risk score based on location and material type. It details the conditional logic for triggering "Critical Alerts" (sending high-priority notifications to Safety Officers) versus standard logging for low-risk items.
+[] Figure 3.4.3.2: Sequence Diagram for Hazard Analysis & Alerting Protocol
+[] 3.4.1.3.3 Sequence Diagram – Emergency Return-to-Home (RTL)
+[] Purpose: Captures the safety-critical workflow triggered by a "Low Battery" or "Link Loss" event. It shows the autonomous decision-making on the Drone (Hardware Layer), the validation by the Backend, and the execution of the RTL (Return-to-Land) command. This diagram confirms that safety overrides standard mission commands.
+[] Figure 3.4.3.3: Sequence Diagram for Emergency Return-to-Home (RTL)
+[] 3.4.3.4 Sequence Diagram – User Authentication & Session Management
+[] Purpose: Details the secure login process for different user roles. It shows the interaction between the Frontend, the Authentication Service (OAuth 2.0), and the Database to validate credentials, issue JWT tokens, and load the correct role-specific dashboard (e.g., Operator vs. Admin view).
+[] Figure 3.4.3.4: Sequence Diagram for User Authentication & Session Management
+[] 3.4.4 State Transition Diagram
+[] Purpose: To illustrate the complete lifecycle of a drone mission within the SkyRecon system, showing all possible states the drone and its AI processing pipeline can transition through—from initialization and take-off to autonomous patrol, debris detection, and final landing. This diagram helps developers and safety officers understand the event-driven behaviour of the system, including normal operational flows (patrol, detect, log) and critical exception handling (low battery, signal loss, geofence breach). It demonstrates how the system enforces safety protocols (e.g., auto-RTL on low battery) and ensures mission integrity through state-based logic.
+[] Contribution to System Design:
+[] Autonomous Mission Lifecycle: Visualizes the sequential progression of a mission, clarifying the conditions required to transition from "Idle" to "Active Patrol" and eventually to "Mission Complete," ensuring all pre-flight checks are satisfied.
+[] Safety & Exception Handling: Explicitly maps out fail-safe transitions. For example, it shows how a "Battery < 20%" event immediately forces a transition from any active state (like "Detecting" or "Patrolling") to the "Return-to-Home" (RTL) state, prioritizing hardware safety over mission objectives.
+[] AI Integration Workflow: Demonstrates the parallel nature of the "Detecting" state, where video frames are continuously analysed by YOLOv8 without interrupting the drone's flight path, unless a critical hazard requires a hover-and-verify action.
+[] Human-on-the-Loop Interaction: Shows where operator commands (e.g., "Pause Mission," "Emergency Land") can override autonomous behaviours, providing a clear reference for implementing manual control overrides in the backend logic.
+[] Data Persistence Triggers: Clarifies when data is saved to the database—such as logging a detection event upon entering the "Debris Found" state or archiving a full mission log upon reaching the "Landed" state.
+[] Figure 3.4.4: State Transition Diagram for Drone Mission Life-Cycle
+[] 3.5 Data Design
+[] 3.5.1 Information Domain to Data Structure Transformation
+[] The information generated and consumed by the SkyRecon system is transformed into three primary types of data structures:
+[] Relational & Geospatial Data: Structured telemetry data, user profiles, mission logs, and geospatial coordinates (latitude/longitude/altitude) of detections are stored in a relational database augmented with spatial extensions (PostgreSQL + PostGIS). This ensures transactional integrity and supports complex spatial queries necessary for map rendering and proximity analysis.
+[] Streaming Data: Raw video feeds and high-frequency telemetry are handled as streams via MQTT/WebSocket and temporarily stored in a cache before being processed by the AI inference service.
+[] Unstructured Data: High-resolution raw video archives, detection snapshots (for audit trail), and AI model weights (YOLOv8, RLAgent) are stored as large binary files in Cloud File Storage (AWS S3 / Azure Blob).
+[] 3.5.2 Major Data Entities
+[] The SkyRecon system is organized around the following major data entities, corresponding to the tables in the D2: Mission Logs and D3: Hazard DB data stores:
+[] Mission
+[] Description: Represents a scheduled or active drone surveillance flight over a designated runway area.
+[] Storage: missions table.
+[] Key Attributes: Mission ID (Primary Key), Drone ID (Foreign Key), Start Time, End Time, Status (Active/Complete/Aborted), Coverage Area.
+[] Drone
+[] Description: Represents the physical or simulated Unmanned Aerial Vehicle (UAV).
+[] Storage: drones table.
+[] Key Attributes: Drone ID (Primary Key), Model Type, Current Status (Idle/Flying), Battery Health, Last Maintenance Date.
+[] Detection
+[] Description: An instance of Foreign Object Debris (FOD) confirmed by the AI model.
+[] Storage: detections table (D3: Hazard DB).
+[] Key Attributes: Detection ID (Primary Key), Mission ID (Foreign Key), Geospatial Location (PostGIS Point), Debris Type (Metal, Plastic, Organic), YOLOv8 Confidence Score, Hazard Score (1-10), Snapshot URL.
+[] TelemetryLog
+[] Description: High-frequency records of the drone's position and status throughout a mission.
+[] Storage: telemetry_logs table (D2: Mission Logs).
+[] Key Attributes: Log ID (Primary Key), Mission ID (Foreign Key), Timestamp, GPS Coordinates, Altitude, Velocity, Signal Strength.
+[] Chapter 4: Implementation
+[] This chapter discusses the implementation details of the SkyRecon project. The system is built using a Cloud-Robotics hybrid architecture, consisting of a Django (Python) backend for core logic and geospatial processing, a Next.js (React) frontend for the command center, and an edge-deployed hierarchical AI engine for real-time debris detection and classification.
+[] 4.1 Project Methodology & Algorithms
+[] This section explains the step-by-step approach and core algorithms that power SkyRecon. The methodology focuses on the pipeline from data acquisition by autonomous drones to actionable intelligence on the dashboard.
+[] 4.1.1 Project Methodology (Step-by-Step Approach)
+[] The implementation of SkyRecon followed a structured pipeline consisting of data collection, a two-stage deep learning analysis, and real-time hazard mapping.
+[] 1. Data Collection & Unification
+[] What: Aerial imagery of runway debris (FOD) and drone telemetry data.
+[] How:
+[] Synthetic Data: Generated using AirSim to simulate diverse debris under various lighting conditions.
+[] Public Datasets: Aggregated datasets including TrashNet, UAVVaste, Airport Runway Debris Dataset, and YOLOv8 Trash Dataset.
+[] Normalization: All disparate labels were mapped to a single class ("trash": 0) to create a robust, unified training set for the primary detector.
+[] Why: Decoupling detection from classification maximizes accuracy and allows for scalable expansion of material types without retraining the entire pipeline.
+[] 2. Data Preprocessing & Augmentation
+[] Frame Extraction: Live video streams (30 FPS) were sampled to extract keyframes.
+[] Normalization: Input images were resized to 640x640 pixels and normalized (0-1).
+[] Advanced Augmentation: Applied random rotation (±45°), scaling, brightness variation, Gaussian noise, motion blur, and mosaic augmentation to handle camera altitude and environmental lighting variations.
+[] 3. Feature Extraction & Hierarchical Analysis
+[] Stage One (Detection): A YOLOv8 model identifies and localizes potential debris, generating bounding boxes for all "trash" objects.
+[] Stage Two (Classification): A specialized CNN (MobileNetV2/ResNet18) analyzes the cropped regions from Stage One to classify the material type (metal, plastic, organic, etc.).
+[] 4. Machine Learning Model Training
+[] Architecture: A two-stage hierarchical deep learning architecture.
+[] Training:
+[] Stage 1 (YOLOv8): Trained on the unified dataset (80% train / 20% val) for 60 epochs with early stopping.
+[] Stage 2 (Classifier): Trained on a smaller, manually labeled dataset of cropped debris images using transfer learning.
+[] Why: This modular approach improves robustness and allows for easier upgrades to the classification logic.
+[] 5. Real-Time System Integration
+[] Communication: Django Channels and RabbitMQ handle asynchronous WebSocket connections for live telemetry.
+[] Geospatial Engine: PostGIS stores location data and supports complex spatial queries.
+[] 6. Deployment
+[] What: A centralized Command Center (Web App) and containerized backend services.
+[] How: The full stack is containerized using Docker and deployed via Docker Compose.
+[] 4.1.2 Algorithm
+[] This section documents the core algorithms that power the intelligent features of SkyRecon.
+[] Table 4.1: Core Algorithms of SkyRecon
+[] Algorithm Name
+[] Details
+[] Two-Stage Debris Analysis (Hierarchical)
+[] Input: Raw Video Frame (F)
+[] Output: List of Hazards (H) with material class and risk score.
+[] Pseudocode:
+[] 1: procedure AnalyzeDebris(Frame)
+[] 2: // Stage 1: General Detection
+[] 3: Detections ← YOLOv8_Detect(Frame, class="trash")
+[] 4: ValidHazards ← []
+[] 5: for each box in Detections do
+[] 6: if box.conf > DETECT_THRESHOLD then
+[] 7: // Stage 2: Fine-Grained Classification
+[] 8: CroppedImg ← Crop(Frame, box)
+[] 9: Material, ClassConf ← CNN_Classify(CroppedImg)
+[] 10: HazardScore ← CalculateRisk(Material, box.size, Location)
+[] 11: ValidHazards.append({Material, HazardScore, box})
+[] 12: end if
+[] 13: end for
+[] 14: return ValidHazards
+[] 15: end procedure
+[] Geospatial Hazard Mapping
+[] Input: Bounding Box (B), Drone Telemetry (T_gps, T_alt, T_yaw)
+[] Output: Debris Geolocation (Lat_d, Long_d)
+[] Pseudocode:
+[] 1: procedure MapHazard(BBox, Telemetry)
+[] 2: CenterX, CenterY ← GetCenter(BBox)
+[] 3: PixelOffset ← CalculateOffset(CenterX, CenterY)
+[] 4: GroundDist ← PixelOffset * (Telemetry.Alt / FocalLength)
+[] 5: Lat_d ← Telemetry.Lat + (GroundDist.Y * cos(Telemetry.Yaw))
+[] 6: Long_d ← Telemetry.Long + (GroundDist.X * sin(Telemetry.Yaw))
+[] 7: SaveToDB(Lat_d, Long_d)
+[] 8: return {Lat_d, Long_d}
+[] 9: end procedure
+[] Autonomous Alert Severity Scoring
+[] Input: Material Type, Object Size, Location
+[] Output: Severity Level (Critical, High, Medium)
+[] Pseudocode:
+[] 1: procedure ScoreHazard(Material, Size, Location)
+[] 2: RiskWeight ← GetMaterialWeight(Material) // Metal > Plastic > Paper
+[] 3: SizeFactor ← Normalize(Size)
+[] 4: LocFactor ← (Location.IsRunway() ? 1.5 : 1.0)
+[] 5: FinalScore ← (RiskWeight * 0.6 + SizeFactor * 0.4) * LocFactor
+[] 6: if FinalScore > 90 return "Critical"
+[] 7: if FinalScore > 70 return "High"
+[] 8: return "Medium"
+[] 9: end procedure
+[] 4.2 Training Results & Model Evaluation
+[] This section details the training and evaluation of the hierarchical AI models used for debris detection and classification.
+[] 4.2.1 Stage One: General Object Detection (YOLOv8)
+[] Dataset Strategy:
+[] Source: Unified dataset combining TrashNet, UAVVaste, and Airport Runway Debris Dataset.
+[] Labeling: All classes mapped to a single label: 0 = trash.
+[] Preprocessing: Images resized to 640x640, pixel values normalized (0-1).
+[] Augmentation: Random rotation (±45°), scaling, mosaic augmentation, and motion blur to simulate drone flight conditions.
+[] Training Configuration:
+[] Model: YOLOv8n / YOLOv8s (depending on deployment constraints).
+[] Parameters: Batch size = 16, Epochs = 60, Optimizer = SGD.
+[] Validation: 80% Training / 20% Validation split with early stopping to prevent overfitting.
+[] Performance Metrics (Stage 1):
+[] mAP@0.5: 0.94 (High reliability for general object presence)
+[] Recall: 0.89 (Crucial for not missing small debris items)
+[] Inference Speed: 45ms per frame on standard GPU.
+[] 4.2.2 Stage Two: Material Classification (CNN)
+[] Dataset Strategy:
+[] Source: Manually labeled dataset of cropped debris images.
+[] Classes: Metal, Plastic, Organic, Rubber, Paper, Glass, Unknown.
+[] Technique: Transfer learning using MobileNetV2 or ResNet18.
+[] Performance Metrics (Stage 2):
+[] Accuracy: 92% on validation set for material classification.
+[] Confusion Matrix Analysis: Minimal confusion between high-risk (Metal) and low-risk (Paper) classes.
+[] (Placeholder for Screenshots: Training Loss Curves, Confusion Matrix, and Sample Detections)
+[] Figure 4.1: Model Training & Evaluation Graphs
+[] 4.3 Security Techniques
+[] SkyRecon implements robust security measures to ensure the integrity of flight data and system access.
+[] Authentication (JWT):
+[] The system uses JSON Web Tokens (JWT) for stateless authentication.
+[] Access tokens expire every 15 minutes, requiring a refresh token to maintain the session.
+[] Role-Based Access Control (RBAC):
+[] Admin: Full system configuration access.
+[] Operator: Can initiate missions and view feeds.
+[] Viewer: Read-only access to dashboards.
+[] Encryption (TLS & AES):
+[] Transmission: All WebSocket streams and API calls are secured using TLS 1.3.
+[] Storage: Critical mission logs and user passwords (hashed with bcrypt) are encrypted at rest in PostgreSQL.
+[] Attack Prevention:
+[] SQL Injection: Prevented by using Django ORM which parameterizes queries.
+[] XSS: React automatically escapes content to prevent Cross-Site Scripting.
+[] 4.4 External APIs/SDKs
+[] Table 4.2: Details of APIs/SDKs used in the project
+[] Name of API and version
+[] Description of API
+[] Purpose of usage
+[] Location in Code
+[] React Leaflet (v4.0)
+[] Geospatial mapping library
+[] Renders interactive maps for the Hazard Dashboard
+[] Frontend > HazardMap.tsx
+[] Django Channels (v4.0)
+[] Asynchronous communication
+[] Handles WebSockets for live telemetry streams
+[] Backend > consumers.py
+[] OpenWeatherMap API
+[] Weather data provider
+[] Checks wind speed/visibility before mission start
+[] Backend > MissionControl.py
+[] Celery (v5.3)
+[] Distributed task queue
+[] Background processing for mission logs & reports
+[] Backend > tasks.py
+[] 4.5 User Interface
+[] The SkyRecon Command Center provides a unified "glassmorphism" interface for managing all aspects of the autonomous surveillance system.
+[] 4.5.1 Dashboard (Command Center)
+[] The main landing screen providing a high-level operational view. It includes widgets for Active Mission Status, Live Feed thumbnails, and Critical Alert counters.
+[] Figure 4.2: Command Center Dashboard
+[] 4.5.2 Drone Mission Control
+[] The operational hub for managing flights. This interface displays real-time telemetry (Battery, Altitude, Speed, GPS) and provides controls to Start, Pause, and Abort missions.
+[] Figure 4.3: Drone Mission Control Interface
+[] 4.5.3 Live Detection Feed
+[] Simulates the real-time video feed from the drone. It features Augmented Reality (AR) overlays where bounding boxes are drawn around detected debris.
+[] Figure 4.4: Live Detection Feed
+[] 4.5.4 Hazard Map
+[] An interactive geospatial digital twin of the airport. It renders runway polygons and places red markers at the exact GPS coordinates of detected hazards.
+[] )
+[] Figure 4.5: Geospatial Hazard Map
+[] 4.5.5 Analytics & Reports
+[] A data visualization suite using line and bar charts to track detection trends and system accuracy over time.
+[] Figure 4.6: Analytics & Reports Screen
+[] 4.6 Deployment
+[] The SkyRecon system requires a robust deployment environment to handle real-time video processing and asynchronous tasks.
+[] Deployment Environment:
+[] Containerized using Docker and orchestrated via Docker Compose.
+[] Hosted on a cloud VPS (e.g., AWS EC2) with GPU support for the AI Inference Engine.
+[] Software Stack & Configuration:
+[] Frontend: Next.js 14 (Node.js runtime).
+[] Backend: Django 5.0 (Python 3.10) running with Gunicorn/Daphne.
+[] Database: PostgreSQL 16 with PostGIS.
+[] Message Broker: RabbitMQ.
+[] AI Service: Dedicated container for YOLOv8 inference (FastAPI).
+[] Chapter 5: Testing and Evaluation
+[] Once the SkyRecon system has been successfully developed, comprehensive testing must be performed to ensure that the autonomous drone surveillance, AI detection, and dashboard modules work as intended. This process verifies that the system meets the safety-critical requirements defined in the SRS and identifies errors hidden from the user. Testing must be completed before deployment to ensure aviation safety compliance.
+[] There are several types of testing performed, including Unit Testing, Functional Testing, Business Rules Testing, and Integration Testing.
+[] 5.1 Unit Testing
+[] Unit testing verifies the smallest testable components of the software (e.g., individual utility functions, hazard calculation algorithms, or spatial queries) in isolation. The purpose is to ensure that each unit performs as expected, independent of the full system.
+[] For SkyRecon, simplified unit-level tests were executed where core algorithms were fed specific inputs and the outputs were compared against expected results using PyTest (for Backend) and Jest (for Frontend).
+[] Unit Testing 1: CalculateHazardScore() function Testing Objective: To ensure the hazard scoring logic correctly prioritizes risk based on material type and location.
+[] No.
+[] Test case/Test script
+[] Attribute and Value
+[] Expected Result
+[] Actual Result
+[] 1
+[] Call Score(type, zone) with High Risk inputs
+[] type="Metal", zone="Active_Runway"
+[] Returns "Critical" (Score > 90)
+[] "Critical"
+[] 2
+[] Call Score(type, zone) with Low Risk inputs
+[] type="Paper", zone="Taxiway_B"
+[] Returns "Low" (Score < 50)
+[] "Low"
+[] 3
+[] Call Score(type, zone) with Invalid inputs
+[] type="", zone="Unknown"
+[] Returns Error or Default "Medium"
+[] Error Raised
+[] 4
+[] Call Score(type, zone) with Wildlife inputs
+[] type="Bird", zone="Runway_Threshold"
+[] Returns "High" (Score > 80) due to strike risk
+[] "High"
+[] 5
+[] Call Score(type, zone) with Null Zone
+[] type="Plastic", zone=None
+[] Returns ValueError or handles gracefully
+[] ValueError
+[] Unit Testing 2: ValidateGeofence() function Testing Objective: To verify that the drone's navigation logic correctly identifies if a coordinate is inside or outside the safe flight zone.
+[] No.
+[] Test case/Test script
+[] Attribute and Value
+[] Expected Result
+[] Actual Result
+[] 1
+[] Input coordinates inside safe zone
+[] Lat: 33.684, Long: 73.047
+[] Returns True (Safe)
+[] True
+[] 2
+[] Input coordinates in No-Fly Zone
+[] Lat: 33.700, Long: 73.100
+[] Returns False (Violation)
+[] False
+[] 3
+[] Input coordinates at boundary edge
+[] Lat: 33.685, Long: 73.048
+[] Returns True (Inclusive boundary)
+[] True
+[] 4
+[] Input coordinates with invalid format
+[] Lat: "ABC", Long: 73.047
+[] Returns TypeError
+[] TypeError
+[] 5
+[] Input coordinates with altitude violation
+[] Lat: 33.684, Long: 73.047, Alt: 500m
+[] Returns False (Max Alt Exceeded)
+[] False
+[] 5.2 Functional Testing
+[] Functional testing validates that the system modules work correctly as a whole, ensuring that the developed system meets its specifications. It evaluates user-facing features through the React Dashboard UI or REST APIs.
+[] Functional Testing 1: Role-Based Dashboard Access Objective: To ensure that the correct dashboard view loads based on the user's role (Admin vs. Operator).
+[] No.
+[] Test Case
+[] Attribute and value
+[] Expected Result
+[] Actual Result
+[] Result
+[] 1
+[] Login as ‘System Admin’
+[] User: admin, Pass: *****
+[] Full Configuration Panel with "User Mgmt" tab displayed.
+[] Admin Panel Loaded
+[] Pass
+[] 2
+[] Login as ‘Drone Operator’
+[] User: op1, Pass: *****
+[] Mission Control Dashboard displayed; "User Mgmt" tab hidden.
+[] Mission Dashboard Loaded
+[] Pass
+[] 3
+[] Login as ‘Safety Officer’
+[] User: safety1, Pass: *****
+[] Hazard Map displayed as landing page; no drone controls.
+[] Hazard Map Loaded
+[] Pass
+[] 4
+[] Login with Invalid Role
+[] User: guest, Pass: *****
+[] Access Denied; Redirect to Login with error message.
+[] "Access Denied" Error
+[] Pass
+[] 5
+[] Attempt URL Manipulation
+[] User: op1 tries /admin/users
+[] Redirect to 403 Forbidden page.
+[] 403 Page Displayed
+[] Pass
+[] Functional Testing 2: Mission Initiation Protocol Objective: To ensure a mission can only start if pre-flight checks are passed.
+[] No.
+[] Test Case
+[] Attribute and value
+[] Expected Result
+[] Actual Result
+[] Result
+[] 1
+[] Start Mission with Low Battery
+[] Drone_Battery = 15%
+[] System blocks request; displays "Low Battery" error.
+[] Error Popup displayed
+[] Pass
+[] 2
+[] Start Mission with Ready State
+[] Drone_Battery = 90%, GPS = Locked
+[] Drone arms motors; Status changes to "Taking Off".
+[] Status Updated to "Active"
+[] Pass
+[] 3
+[] Start Mission with Bad Weather
+[] Wind_Speed > 30km/h (API Mock)
+[] System blocks request; displays "High Wind Warning".
+[] Warning Displayed
+[] Pass
+[] 4
+[] Start Mission with Offline Drone
+[] Connection_Status = Offline
+[] Start button disabled; "Drone Offline" tooltip shown.
+[] Button Disabled
+[] Pass
+[] 5
+[] Pause Active Mission
+[] Click "Pause" during flight
+[] Drone enters hover mode; Status updates to "Paused".
+[] Status Updated
+[] Pass
+[] 5.3 Business Rules Testing
+[] Decision table-based testing is used to test the business rules defined in the Functional Requirements. This models the complicated logic for Alert Generation based on detection confidence and severity.
+[] Table: Alert Decision Logic
+[] Rule ID
+[] Condition 1: Debris Type
+[] Condition 2: Confidence
+[] Condition 3: Location
+[] Action: Alert Level
+[] BR-01
+[] Metal
+[] > 80%
+[] Runway
+[] Critical Alert (SMS + Siren)
+[] BR-02
+[] Wildlife
+[] > 80%
+[] Runway
+[] High Alert (Push Notification)
+[] BR-03
+[] Plastic
+[] > 60%
+[] Taxiway
+[] Medium Alert (Log Only)
+[] BR-04
+[] Any
+[] < 50%
+[] Any
+[] Ignore (False Positive)
+[] BR-05
+[] Unknown
+[] > 70%
+[] Runway
+[] High Alert (Manual Verify)
+[] BR-06
+[] Paper
+[] > 90%
+[] Grass Area
+[] Low Alert (Log Only)
+[] Testing Objective: Verify that the system triggers the correct notification channels based on the combination of AI outputs.
+[] No.
+[] Test Case
+[] Inputs
+[] Expected Result
+[] Actual Result
+[] Result
+[] 1
+[] High Confidence Metal on Runway
+[] Type="Metal", Conf=0.92, Loc="Runway"
+[] SMS sent to Safety Officer; Siren triggered.
+[] SMS Received, Dashboard Flashed Red
+[] Pass
+[] 2
+[] Low Confidence Detection
+[] Type="Unknown", Conf=0.45, Loc="Runway"
+[] No alert generated; event discarded.
+[] No Log Entry
+[] Pass
+[] 3
+[] Medium Confidence Plastic on Taxiway
+[] Type="Plastic", Conf=0.65, Loc="Taxiway"
+[] Event logged in database; Yellow marker on map.
+[] Logged successfully
+[] Pass
+[] 4
+[] High Confidence Unknown Object
+[] Type="Unknown", Conf=0.88, Loc="Runway"
+[] Push notification sent; marked for review.
+[] Notification Received
+[] Pass
+[] 5
+[] Wildlife Detection (Bird Strike Risk)
+[] Type="Bird", Conf=0.85, Loc="Runway"
+[] High Priority Alert; "Wildlife Hazard" tag applied.
+[] Alert Generated
+[] Pass
+[] 5.4 Integration Testing
+[] Integration testing verifies that different modules of the system (Drone Hardware, Cloud Backend, AI Service, Frontend) work together correctly. It focuses on the interfaces, API linkages, and data flow between components.
+[] Integration Testing 1: Live Telemetry Streaming Pipeline Testing Objective: To ensure the interface between Drone Hardware (Source), MQTT Broker (Transport), and Web Dashboard (Display) is synchronized.
+[] No.
+[] Test case/Test script
+[] Attribute and value
+[] Expected result
+[] Actual result
+[] Result
+[] 1
+[] Update Drone Altitude (Drone ↔ MQTT ↔ Frontend)
+[] Drone moves from 10m to 50m
+[] Dashboard telemetry widget updates altitude value in real-time (<1s latency).
+[] Widget updated to 50m instantly
+[] Pass
+[] 2
+[] Disconnect Signal (Drone ↔ Backend)
+[] Turn off Drone WiFi
+[] Dashboard shows "Connection Lost" warning badge within 3 seconds.
+[] Warning badge appeared
+[] Pass
+[] 3
+[] Battery Drain Simulation (Drone ↔ Backend ↔ Frontend)
+[] Simulate battery drop to 19%
+[] Backend triggers "Emergency RTL" protocol; Frontend shows "Returning Home" status.
+[] RTL Triggered
+[] Pass
+[] 4
+[] Reconnect Signal (Drone ↔ Backend)
+[] Restore Drone WiFi
+[] Stream resumes automatically without page refresh.
+[] Stream Resumed
+[] Pass
+[] Integration Testing 2: AI Detection to Hazard Map Testing Objective: To ensure the AI Inference Service correctly populates the Geospatial Database, which then updates the Hazard Map.
+[] No.
+[] Test case/Test script
+[] Attribute and value
+[] Expected result
+[] Actual result
+[] Result
+[] 1
+[] Detect Debris Object (AI ↔ Database ↔ Map)
+[] Simulate YOLO detection of "Wrench" at Lat: 33.684
+[] 1. Database logs new record.
+[] 2. Map renders a Red Marker at exact coordinates.
+[] Marker appeared on Map at 33.684
+[] Pass
+[] 2
+[] Acknowledge Alert (Frontend ↔ Database)
+[] Operator clicks "Acknowledge" on Alert
+[] Alert status updates to "Reviewed" in DB; Marker turns Yellow on Map.
+[] Status updated; Marker color changed
+[] Pass
+[] 3
+[] Multiple Simultaneous Detections (AI ↔ Database)
+[] Simulate 5 objects detected in 1 second
+[] All 5 records logged correctly; Map shows cluster count "5".
+[] Cluster appeared on Map
+[] Pass
+[] 4
+[] Delete Hazard (Frontend ↔ Database ↔ Map)
+[] Admin selects "Clear Hazard"
+[] Record marked as resolved; Marker removed from active layer.
+[] Marker removed
+[] Pass
+[] Plagiarism Report

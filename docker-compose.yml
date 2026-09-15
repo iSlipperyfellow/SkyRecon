@@ -1,0 +1,163 @@
+version: '3.8'
+
+services:
+  # PostgreSQL with PostGIS
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: skyrecon-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-skyrecon_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-skyrecon_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-skyrecon_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-skyrecon_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # RabbitMQ for Channels
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: skyrecon-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-guest}
+    ports:
+      - "5672:5672"
+      - "15672:15672"  # Management UI
+    healthcheck:
+      test: rabbitmq-diagnostics ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  # Mosquitto MQTT Broker
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: skyrecon-mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_logs:/mosquitto/log
+
+  # Django Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: skyrecon-backend
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-skyrecon_user}:${POSTGRES_PASSWORD:-skyrecon_pass}@db:5432/${POSTGRES_DB:-skyrecon_db}
+      DEBUG: ${DEBUG:-True}
+      SECRET_KEY: ${SECRET_KEY:-your-super-secret-key}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1,backend,0.0.0.0}
+      RABBITMQ_HOST: ${RABBITMQ_HOST:-rabbitmq}
+      RABBITMQ_PORT: ${RABBITMQ_PORT:-5672}
+      MQTT_BROKER_HOST: ${MQTT_BROKER_HOST:-mosquitto}
+      MQTT_BROKER_PORT: ${MQTT_BROKER_PORT:-1883}
+      YOLO_INFERENCE_URL: ${YOLO_INFERENCE_URL:-http://inference-mock:8001}
+      JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      JWT_EXPIRATION_DELTA: ${JWT_EXPIRATION_DELTA:-300}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - ./yolov8n.pt:/app/yolov8n.pt
+      - ./yolo26n.pt:/app/yolo26n.pt
+      - ./runs:/app/runs
+      - ./reports:/app/reports
+    healthcheck:
+      test: curl -f http://localhost:8000/api/health/ || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: skyrecon-frontend
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+      NEXT_PUBLIC_WS_URL: ${NEXT_PUBLIC_WS_URL:-ws://localhost:8000}
+      NEXT_PUBLIC_MAP_PROVIDER: ${NEXT_PUBLIC_MAP_PROVIDER:-leaflet}
+      NEXT_PUBLIC_MAPBOX_TOKEN: ${NEXT_PUBLIC_MAPBOX_TOKEN:-}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+
+  # Mock YOLOv8 Inference Service
+  inference-mock:
+    build:
+      context: ./inference-mock
+      dockerfile: Dockerfile
+    container_name: skyrecon-inference-mock
+    environment:
+      BACKEND_URL: ${NEXT_PUBLIC_API_URL:-http://backend:8000}
+      JWT_SECRET: ${SECRET_KEY:-your-super-secret-key}
+      USE_REAL_AI: ${USE_REAL_AI:-True}
+      YOLO_MODEL_PATH: ${YOLO_MODEL_PATH:-/app/best.pt}
+    ports:
+      - "8001:8001"
+    depends_on:
+      - backend
+    volumes:
+      - ./inference-mock:/app
+      - ./backend/media:/app/media
+      - ./yolov8n.pt:/app/yolov8n.pt
+      - ./yolo26n.pt:/app/yolo26n.pt
+      - ./inference-mock/best.pt:/app/best.pt
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # PgAdmin for Database Management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: skyrecon-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+  rabbitmq_data:
+  mosquitto_data:
+  mosquitto_logs:
+  pgadmin_data:
+
+networks:
+  default:
+    name: skyrecon-net

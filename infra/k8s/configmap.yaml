@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: skyrecon-config
+data:
+  DEBUG: "False"
+  LOG_LEVEL: "INFO"
+  DETECTION_RETENTION_DAYS: "30"
+  TELEMETRY_RETENTION_DAYS: "7"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: skyrecon-secrets
+type: Opaque
+stringData:
+  database-url: postgresql://skyrecon:changeme@postgres-service:5432/skyrecon_prod
+  secret-key: your-very-secure-secret-key-change-in-production
+  jwt-secret: your-jwt-secret-key

@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skyrecon-backend
+  labels:
+    app: skyrecon-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: skyrecon-backend
+  template:
+    metadata:
+      labels:
+        app: skyrecon-backend
+    spec:
+      containers:
+      - name: backend
+        image: skyrecon-backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://skyrecon_user:skyrecon_pass@skyrecon-db:5432/skyrecon_db"
+        - name: RABBITMQ_HOST
+          value: "skyrecon-rabbitmq"
+        - name: YOLO_INFERENCE_URL
+          value: "http://skyrecon-inference:8001"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skyrecon-inference
+  labels:
+    app: skyrecon-inference
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skyrecon-inference
+  template:
+    metadata:
+      labels:
+        app: skyrecon-inference
+    spec:
+      containers:
+      - name: inference
+        image: skyrecon-inference-mock:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8001
+        env:
+        - name: USE_REAL_AI
+          value: "True"
+        resources:
+          limits:
+            nvidia.com/gpu: 1

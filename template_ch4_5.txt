@@ -1,0 +1,1019 @@
+[TOC1] 4Chapter 4: Implementation15
+[TOC1] 4.1Project Methodology & Algorithms15
+[TOC3] 4.1.1Project Methodology (Step-by-Step Approach)15
+[TOC3] 4.1.2Algorithm17
+[TOC3] 4.1.3Guideline for Students18
+[TOC1] 4.2Training Results & Model Evaluation (Mandatory for AI/ML/Data Science Projects)18
+[TOC1] 4.3Security Techniques (if applicable)18
+[TOC1] 4.4External APIs/SDKs18
+[TOC1] 4.5User Interface19
+[TOC3] 4.5.1Login Screen     4.5.2 Home Screen19
+[TOC3] 4.5.3Assignee Dashboard20
+[TOC3] 4.5.4New Complaint21
+[TOC2] 4.6Deployment21
+[TOC1] 5Chapter 5: Testing and Evaluation23
+[TOC2] 5.1Unit Testing23
+[TOC2] 5.2Functional Testing23
+[TOC2] 5.3Business Rules Testing24
+[TOC2] 5.4Integration Testing24
+[TOC1] 6Chapter 6: Conclusion and Future Work25
+[TOC2] 6.1Conclusion25
+[TOC2] 6.2Future Work25
+[TOC1] 7Chapter 7: References26
+[TOC1] 8Chapter 8: Plagiarism Report27
+[TOC1] Appendix A28
+[TOC2] Example: Context Diagram28
+[TOC2] Example: User Classes and Characteristics29
+[TOC2] Example: Use case Diagram30
+[TOC3] Syntax for Use case Diagram31
+[TOC2] Example: Mockup-Based Requirement Analysis32
+[TOC2] Mockup M1 – Login Page32
+[TOC3] Functional Requirements Derived from Mockup M1 – Login Page32
+[TOC2] Mockup M2 – Dashboard Page33
+[TOC3] Functional Requirements Derived from Mockup M2– Dashboard Page33
+[TOC1] Appendix B36
+[TOC2] Conceptual Architecture Example – Online Shopping Mall36
+[TOC3] Example:36
+[TOC2] Example of Architecture Pattern:38
+[TOC1] Appendix C40
+[TOC2] Design Models40
+[TOC2] Activity Diagram40
+[TOC3] Activity Diagram Syntax41
+[TOC2] Class Diagram42
+[TOC3] Example42
+[TOC3] Class Diagram Syntax43
+[TOC2] Sequence Diagram44
+[TOC3] Exampl44
+[TOC3] Sequence diagram Syntax45
+[TOC2] Behavioral State Machine Diagram46
+[TOC3] Exam46
+[TOC3] Behavioral State Machine Diagram Syntax47
+[TOC2] Data Flow Diagram48
+[TOC3] Guidelines for Drawing DFDs48
+[TOC1] Appendix D52
+[TOC2] General Coding Standards & Guidelines52
+[TOC1] Appendix E54
+[TOC2] Business rules testing54
+[TOC3] Example:54
+[] List of Figures
+[TableofFigures] Figure 4.3 Assignee Dashboard29
+[TableofFigures] Figure A1: Context diagram of the Cafeteria Ordering System.36
+[TableofFigures] Figure A-2: Use Case Diagram of an Appointment System38
+[Heading1] Chapter 1: Introduction and Problem Definition
+[] This chapter provides the overview of the project. The first paragraph of every chapter should provide the chapter summary.
+[Heading2] Overview of the Project
+[] Briefly introduce the project and its context. Mention the domain, users, problem scope, and the need for automation or improvement.
+[] Example: The Cafeteria Automation System is an intelligent, mobile-based application designed to digitize and streamline the food ordering and management process in university and institutional cafeterias. The system bridges the gap between users (students and faculty) and the cafeteria staff by enabling online ordering, real-time availability tracking, and administrative control, reducing queues and manual order handling. The proposed solution offers a scalable and user-friendly interface while improving transparency, hygiene, and efficiency in daily operations.
+[Heading2] Vision Statement
+[] Write a concise vision statement that summarizes the long-term purpose, intent and significance of the product. The vision statement should reflect a balanced view that will satisfy the expectations of diverse stakeholders. It can be somewhat idealistic but should be grounded in the realities of existing or anticipated markets. The following keyword template works well for crafting a product vision statement:
+[] For [target customer]
+[] Who [statement of the need or opportunity]
+[] The [product name]
+[] Is [product category]
+[] That [major capabilities, key benefit, compelling reason to buy or use]
+[] Unlike [primary competitive alternative, current system, current business process]
+[] Our product [statement of primary differentiation and advantages of new product]
+[] Here’s a sample vision statement for the Chemical Tracking System, with the keywords in boldface:
+[] Example: For employees who want to order meals from the company cafeteria or from local restaurants online, the Cafeteria Ordering System is an Internet-based and smartphone-enabled application that will accept individual or group meal orders, process payments, and trigger delivery of the prepared meals to a designated location on the Process Impact campus. Unlike the current telephone and manual ordering processes, employees who use our product (the Cafeteria Ordering System) will not have to go to the cafeteria to get their meals, which will save them time and will increase the food choices available to them.
+[Heading2] Problem Statement
+[] Explain how your project will solve the problems mentioned above. List specific objectives the system
+[] will accomplish.
+[] Example: Employees at the company Process Impact presently spend an average of 65 minutes per day going to the cafeteria to select, purchase, and eat lunch. About 20 minutes of this time is spent walking to and from the cafeteria, selecting their meals, and paying by cash or credit card. When employees go out for lunch, they spend an average of 90 minutes off-site. Some employees phone the cafeteria in advance to order a meal to be ready for them to pick up. Employees don‘t always pet the selections they want because the cafeteria runs out of certain items. The cafeteria wastes a significant quantity of food that is not purchased and must be thrown away. These same issues apply to breakfast and supper, although far fewer employees use the cafeteria for those meals than for lunch.
+[Heading2] Problem Solution
+[] Explain how your project will solve the problems mentioned above. List specific objectives the system will accomplish.
+[] Example: Many employees have requested a system that would permit a cafeteria user to order meals (defined as a set of one or more food items selected from the cafeteria menu) online, to be picked up at the cafeteria or delivered to a company location at a specified time and date. Such a system would save employees time, and it would increase their chance of getting the items they prefer. Knowing what food items customers want in advance would reduce waste in the cafeteria and would improve the efficiency of cafeteria staff. The future ability for employees to order meals for delivery from local restaurants would make a wide range of choices available to employees and provide the possibility of cost savings through volume discount agreements with the restaurants.
+[Heading2] Objectives of the Proposed System
+[] Example:
+[] BO-1: Reduce the cost of cafeteria food wastage by 40%.
+[] BO-2: Reduce cafeteria operating costs by 15%.
+[] BO-3: Increase average effective work time by 15 minutes per cafeteria-using employee per day.
+[Heading2] Scope
+[] Write down the scope of your project in a paragraph. Briefly define the main functionalities of the proposed project. Scope defines the boundaries and range of the proposed solution, that what would be the part of your project. Write down in logical flow with consistency.
+[] (Usually in 14-18 sentences)
+[Heading3] Limitations/Constraints
+[Header] Write down the limitations and constraints of the proposed project.
+[] Example: LI-1: Some food items that are available from the cafeteria will not be suitable for delivery, so the delivery menus available to patrons of the COS must be a subset of the full cafeteria menus.
+[] LI-2: The COS shall be used only for the cafeteria at the Process Impact campus in Clackamas, Oregon.
+[Heading2] Modules
+[] Write down the modules of the proposed project.
+[] Each module should highlight features, using bulleted/numbered notation.
+[] When developing both a mobile app and a web app, group the modules according to the system types, such as Client Web App, Client Mobile App, Admin Web App etc.
+[Heading3] Module 1: Module Name
+[] [List of features]
+[] Example:
+[] Module 1: Order Meal
+[] FE-1: Order and pay for meals from the cafeteria menu to be picked up or delivered.
+[] FE-2: Order and pay for meals from local restaurants to be delivered.
+[] Module 2: Menu Operations
+[] FE-1: Create, view, modify, and cancel meal subscriptions for standing or recurring meal orders, or for daily special meals.
+[] FE-2: Create, view, modify, delete, and archive cafeteria menus.
+[] FE-3: View ingredient lists and nutritional information for cafeteria menu items.
+[Heading2] Related System Analysis/Literature Review
+[Heading3] Literature Review
+[] If the system includes advanced techniques such as artificial intelligence, machine learning, simulation, complex data analytics, or applies data and information security techniques, a literature review becomes essential. This section should explore prior academic or industry research relevant to the chosen domain. Highlight key findings, strengths and weaknesses of previous systems, and clearly outline how your project addresses any identified gaps.
+[] Example: Previous research in smart cafeteria systems and digital ordering platforms (e.g., Singh et al., 2022; Zhao et al., 2021) emphasizes the role of real-time data analytics in reducing waiting times and enhancing customer experience. However, many existing systems still rely on manual inventory checks and lack predictive features. Our project addresses this gap by integrating IoT-enabled inventory management with AI-driven demand forecasting to ensure accurate, real-time availability of meals.
+[] Similar approaches have been explored by Ahmed et al. (2023), who applied machine learning for predictive demand management, and Lee et al. (2022), who experimented with dynamic pricing to minimize food waste. While these studies highlight the potential of AI in cafeteria operations, they often neglect secure transaction handling and personalized meal recommendations. Our system extends the literature by combining blockchain-based transaction security with AI-powered recommendation algorithms, offering a holistic cafeteria management solution.
+[Heading3] Related System Analysis
+[] Write about the existing/similar systems related to your proposed project.
+[] Don’t use more than 4 sentences for explaining a single system/application.
+[] Briefly provide an analysis of the related system which may help you to specify the contribution of the proposed project.
+[Caption] Table 1.1   Related System Analysis with proposed project solution
+[] Application Name
+[] Weakness
+[] Proposed Project Solution
+[] The name of related application(s).
+[] Weaknesses may include limited features, low quality functionality and processes.
+[] The way the proposed project mitigates the weaknesses.
+[Heading2] Tools and Technologies
+[Header] Identify the tools, frameworks, and technologies used. Explain why each was selected.
+[] Example:
+[Caption] Table 1.2 Tools and Technologies for Proposed Project
+[] Tools
+[] And
+[] Technologies
+[] Tool/Technology
+[] Purpose
+[] Rationale
+[] Flutter
+[] Mobile App UI
+[] Cross-platform and fast development
+[] Firebase
+[] Real-time Database & Auth
+[] Scalable, low-latency, and secure
+[] Node.js/Django
+[] Backend APIs
+[] REST API creation and middleware handling
+[] React/Vue
+[] Admin Panel
+[] Lightweight, modular front-end libraries
+[] Stripe/PayPal
+[] Payment Gateway
+[] Secure and widely adopted transaction tools
+[Heading2] Project Contribution
+[] Write a detailed description of the technical and conceptual contributions introduced through the proposed system. The purpose of this section is to clearly identify the original value added through the project — whether through innovation, improvement, or unique implementation.
+[] You may write this in paragraph or bullet point form. The contribution should be highlighted:
+[] Innovations or improvements over existing solutions
+[] Unique design or technical decisions
+[] New features introduced
+[] Efficiency, usability, or performance enhancements
+[] Integration of technologies or tools in a novel way
+[] Avoid generic descriptions like “we implemented the system.” Focus on what is new, better, different, or done in a novel way in the project.
+[] Example:
+[NormalWeb] The Advanced Cafeteria Ordering System introduces several technical and conceptual contributions compared to existing manual and digital solutions:
+[NormalWeb] AI-Powered Demand Forecasting: Uses machine learning models to predict peak demand, helping kitchen staff plan resources effectively.
+[NormalWeb] IoT-Enabled Inventory Management: Smart sensors automatically track stock levels and update menu availability in real-time.
+[NormalWeb] Dynamic Pricing for Waste Reduction: Predictive analytics adjusts prices for perishable items nearing expiration, reducing waste while boosting sales.
+[NormalWeb] Blockchain-Based Transaction Logging: Secure and transparent order/payment records prevent manipulation and improve financial accountability.
+[NormalWeb] Personalized Meal Recommendations: Recommendation algorithms suggest meals tailored to user preferences, improving satisfaction and engagement.
+[NormalWeb] Analytics Dashboard for Managers: Provides real-time insights into sales patterns, food waste, and customer behavior for data-driven decision-making.
+[NormalWeb] Contribution Impact:By integrating AI, IoT, blockchain, and data analytics, the system transforms a simple ordering platform into a smart, adaptive cafeteria ecosystem. These contributions significantly improve efficiency, transparency, customer satisfaction, and sustainability compared to conventional cafeteria solutions.
+[Heading2] Relevance to Course Modules
+[] Explain how your project is aligned with your coursework and academic knowledge.
+[] Example:
+[] Software Engineering: Applied SDLC phases, requirement gathering, design modeling.
+[] Database Systems: Structured data storage and queries using Firebase.
+[] Mobile App Development: Implemented with Flutter for Android support.
+[] Web Technologies: Developed Admin Panel using React.
+[] Cybersecurity: Integrated secure authentication and payment encryption.
+[Heading1] Chapter 2: Requirement Analysis
+[] Provide an introduction to the chapter in a few lines. Write details in each of the sections provided ahead.
+[Heading2] User Classes and Characteristics
+[InfoBlue] Identify the various user classes that you anticipate will use this product and describe their pertinent characteristics. See Appendix A for an example of how to present user classes and characteristics.
+[Heading2] Operating Environment
+[InfoBlue] Describe the environment in which the software will operate, which might include the hardware platform; operating systems and versions; geographical locations of users, servers, and databases; and organizations that host the related databases, servers, and websites.
+[InfoBlue] Example:
+[InfoBlue] OE-1:The System shall operate correctly with the following web browsers: Windows Internet Explorer versions 7, 8, and 9; Firefox versions 12 through 26; Google Chrome (all versions); and Apple Safari versions 4.0 through 8.0.
+[Heading2] Design and Implementation Constraints
+[InfoBlue] There are times when a certain programming language must be used, a code library that has already had time invested to develop it needs to be used, and so forth. Describe any factors that will restrict the options available to the developers and the rationale for each constraint. Constraints are described further in Chapter 14, “Beyond functionality.”
+[InfoBlue] Example:
+[] CON-1: The system shall use the current corporate standard Oracle database engine
+[] CON-2: The application must use Microsoft .NET framework 4.5.
+[] CON-3: Online payments may be made only through PayPal.
+[] CON-3: All textual data used by the application shall be stored in the form of XML files.
+[Heading3] Use case Diagram
+[InfoBlue] Provide a Use Case Diagram to illustrate the interactions between identified user classes (actors) and the system. This diagram will establish the scope of user roles and access rights, and it will also serve as the basis for later modeling such as activity and sequence diagrams. See Appendix A for detailed guidelines on how to develop Use Case Diagrams.
+[Heading3] Requirement Identifying Technique
+[InfoBlue] This section describes the technique used to identify and document the functional requirements of the system.
+[NormalWeb] For this project, Mockup-Based Requirement Analysis is used. In this approach, user interface mockups are created using UI/UX tools such as Figma, Adobe XD, or Balsamiq. These mockups visually represent how users will interact with the system. Functional requirements are then derived from each screen’s elements and behaviors.
+[Heading4] Steps to Follow:
+[NormalWeb] Identify key features and break them down into individual screens.
+[NormalWeb] Assign a Mockup ID to each screen (e.g., M1 for Login Page, M2 for Dashboard).
+[NormalWeb] Create mockups of the screens using any UI/UX design tool.
+[NormalWeb] Identify interactive elements on each screen (buttons, forms, menus, etc.).
+[NormalWeb] Derive a functional requirement from each element, describing what the system should do in response.
+[NormalWeb] Organize all functional requirements using the table format provided in Section 2.2.1.
+[NormalWeb] Backend Process Requirements
+[NormalWeb] While mockups are effective for capturing frontend interactions, some system functionalities take place entirely at the backend (e.g., order processing, payment gateway callbacks, email/SMS notifications, scheduled jobs, data validation, account security, and real-time tracking in ride-hailing apps). In addition, there are systems that operate almost entirely at the backend with minimal or no user interface, such as traffic signal control systems or industrial monitoring systems.”.
+[NormalWeb] To capture these processes, the Event–Response Table technique is used.
+[NormalWeb] It is effective for modelling backend or real-time system behaviours where user interface interactions are not directly involved.
+[NormalWeb] It describes the system’s response to specific events, often including conditions under which different actions occur.
+[NormalWeb] This ensures backend workflows are captured in the requirements phase without going into design-level details.
+[NormalWeb] For detailed guidelines and examples of both Mockup-Based Requirement Analysis and Event–Response Tables, please see Appendix A.
+[Heading3] Functional Requirements
+[NormalWeb] This section describes the functional requirements of the system derived from user interactions and mockups. To ensure clarity and maintain a stable specification, each requirement should be documented at the feature level (e.g., User Sign-In, Product Checkout), with optional reference to the specific UI element(s) from which the feature is derived. Each functional requirement must include:
+[NormalWeb] A unique identifier (e.g., FR1.1, FR1.2).
+[NormalWeb] A clear and testable requirement statement written at the feature level.
+[NormalWeb] A reference to the originating mockup screen and (if needed) the UI element that demonstrates the feature.
+[NormalWeb] An optional Business Rule, if the behavior is governed by a domain-specific policy, condition, or constraint.
+[NormalWeb] Where applicable, Business Rules help clarify why a requirement must behave in a certain way and ensure that system behavior aligns with organizational rules, legal constraints, or client policies.
+[Heading3] Recommended Format:
+[NormalWeb] Use the following table structure to document mockup-based, feature-level functional requirements:
+[Caption] Table 2.1: Mockup-Based Functional Requirement Template
+[] Feature (derived from UI)
+[] Functional Requirement (FR-ID: Statement)
+[] Business Rule
+[] [Element e.g., User Sign-In]
+[] FRx.y: The system shall [describe expected behavior or action].
+[] [Any business rules if applicable]
+[NormalWeb] Examples of this technique are provided in Appendix A.
+[Heading2] Non-Functional Requirements
+[] This section specifies non-functional requirements (NFRs) other than constraints (recorded in Section 2.3) and external interface requirements (described in Section 7). Non-functional requirements define the quality attributes of the system, such as reliability, usability, performance, and security. To avoid vague statements, these requirements must be written in specific, quantitative, and verifiable terms (e.g., using percentages, thresholds, or time limits).
+[] To learn how to write non-functional requirements in measurable ways, students should refer to Chapter 14 “Beyond Functionality”, which provides practical guidelines and examples of quality attribute requirements.
+[Heading3] Reliability
+[Header] Requirements about how often the software fails. The measurement is often expressed in MTBF (mean time between failures). The definition of failure must be clear. Also, don't confuse reliability with availability, which is quite a different kind of requirement.  Be sure to specify the consequences of software failure, how to protect from failure, a strategy for error detection, and a strategy for correction.
+[Heading3] Usability
+[Header] Usability requirements deal with ease of learning, ease of use, error avoidance and recovery, the efficiency of interactions, and accessibility. The usability requirements specified here will help the user interface designer create the optimum user experience.
+[Header] Example:
+[Header] USE-1: The COS shall allow a user to retrieve the previous meal ordered with a single interaction.
+[Heading3] Performance
+[Pa1] State specific performance requirements for various system operations. If different functional requirements or features have different performance requirements, it’s appropriate to specify those performance goals right with the corresponding functional requirements, rather than collecting them in this section.
+[] Example:
+[] PER-1: 95% of webpages generated by the COS shall download completely within 4 seconds from the time the user requests the page over a 20 Mbps or faster Internet connection.
+[Heading3] Security
+[Header] One or more requirements about protection of your system and its data. The measurement can be expressed in a variety of ways (effort, skill level, and time) to break into the system.  Do not discuss solutions (e.g. passwords) in a requirements document.
+[Heading2] External Interface Requirements
+[Pa1] This section provides information to ensure that the system will communicate properly with users and with external hardware or software elements. A complex system with multiple subcomponents should create a separate interface specification or system architecture specification. The interface documentation could incorporate material from other documents by reference. For instance, it could point to a hardware device manual that lists the error codes that the device could send to the software.
+[Heading3] User Interfaces Requirements
+[] Describe the logical characteristics of each user interface that the system needs. Some possible items to include are
+[ListParagraph] References to GUI standards or product family style guides that are to be followed.
+[ListParagraph] Standards for fonts, icons, button labels, images, color schemes, field tabbing sequences, commonly used controls, and the like.
+[ListParagraph] Screen layout or resolution constraints.
+[ListParagraph] Standard buttons, functions, or navigation links that will appear on every screen, such as a help button.
+[ListParagraph] Shortcut keys.
+[ListParagraph] Message display conventions.
+[ListParagraph] Layout standards to facilitate software localization.
+[ListParagraph] Accommodation for visually impaired users.
+[] Document the user interface design details, such as specific dialog box layouts, in a separate user interface specification, not in the SRS. Including screen mock-ups in the SRS to communicate another view of the requirements is helpful but making it clear that the mock-ups are not the committed screen designs. If the SRS is specifying an enhancement to an existing system, it sometimes makes sense to include screen displays exactly as they are to be implemented. The developers are already constrained by the current reality of the existing system, so it's possible to know up front just what the modified, and perhaps the new, screens should look like.
+[Heading3] Software interfaces
+[Pa1] Describe the connections between this product and other software components (identified by name and version), including other applications, databases, operating systems, tools, libraries, websites, and integrated commercial components (If any).
+[] Example:
+[] SI-1: Cafeteria Inventory System
+[] SI-1.1:The COS shall transmit the quantities of food items ordered to the Cafeteria Inventory System through a programmatic interface.
+[Heading3] Hardware interfaces
+[Pa1] Describe the characteristics of each interface between the software components and hardware components, if any, of the system. This description might include the supported device types, the data and control interactions between the software and the hardware, and the communication protocols to be used. For more about specifying requirements for systems containing hardware, see Chapter 26, “Embedded and other real-time systems projects.”
+[Heading3] Communications interfaces
+[] State the requirements for any communication functions the product will use, including email, web browser, network protocols, and electronic forms.
+[] Example:
+[] CI-1:The COS shall send an email or text message (based on user account settings) to the Patron to confirm acceptance of an order, price, and delivery instructions.
+[Heading1] Chapter 3: Design and Architecture
+[] This chapter presents the high-level architectural design of the proposed system. It integrates the conceptual system architecture, architectural design patterns, and design models to provide a comprehensive understanding of how the system is structured and implemented. It also includes data design and a data dictionary for full system clarity.
+[Heading2] System Architecture Overview
+[] This section describes the overall external architecture of the software system, which reflects the system's conceptual design, major components, services, technologies, and security considerations. Unlike internal architectural styles (e.g., Layered, MVC), this section focuses on helping stakeholders understand how the entire system operates at a macro level.
+[Heading3] Purpose
+[] To provide a conceptual view of the system that illustrates the big-picture design, showing where each module resides, what technologies are used, and how data and control flow between system components.
+[Heading2] Guidelines for Students
+[ListParagraph] Create a conceptual architecture diagram using tools like Draw.io or Lucidchart.
+[ListParagraph] Represent modules such as:
+[ListParagraph] Frontend (Web/Mobile App)
+[ListParagraph] Backend Services/API
+[ListParagraph] Database Layer
+[ListParagraph] Authentication and Authorization Services
+[ListParagraph] Admin Panel
+[ListParagraph] External APIs / Integrations
+[ListParagraph] Security Services (e.g., Role-Based Access Control, Firewall)
+[ListParagraph] Label each module clearly.
+[ListParagraph] Show flow of control/data using arrows.
+[ListParagraph] Provide explanations about:
+[ListParagraph] The responsibility of each module
+[ListParagraph] Communication between components
+[ListParagraph] Technologies and security mechanisms used
+[Heading3] Technologies and Services
+[Caption] Table 3.1 Technologies, Components, and Security Mechanisms Used in the System Architecture
+[] Component
+[] Description
+[] Technology Used
+[] Security Mechanism
+[] Frontend App
+[] User-facing interface
+[] Flutter
+[] SSL/TLS, Input Validation
+[] Backend API
+[] Business logic and communication
+[] Django / Node.js
+[] JWT, OAuth2.0
+[] Database
+[] Data storage
+[] PostgreSQL / Firebase
+[] Role-based Access Control
+[] Admin Panel
+[] Admin management interface
+[] React / Vue
+[] Admin Auth, 2FA
+[] Payment Gateway
+[] Payment transactions
+[] Stripe / PayPal
+[] Tokenization / Encryption
+[NormalWeb] A complete example of conceptual architecture is provided in Appendix B.
+[Heading1] Architecture Style / Pattern
+[] After presenting the conceptual architecture, describe the internal architecture pattern used to decompose the system into logical modules.
+[Heading3] Guidelines for Students
+[ListParagraph] Select and name the architecture pattern: Layered, MVC, Client-Server, Microservices, etc.
+[ListParagraph] Justify why this style was chosen.
+[ListParagraph] Provide a diagram showing components mapped to the architecture style.
+[ListParagraph] Describe interactions among components.
+[] A complete example of the architecture style and pattern implementation is provided in Appendix B.
+[Heading1] Design Models
+[] Create and include all relevant design models for your system. For each model, provide a clear and concise description that explains its purpose, what it represents, and how it contributes to the overall system. The description should help the reader understand the function of the model within the system. Be sure to explain key elements within the diagram so the reader can easily interpret and comprehend the model's significance and role. you are required to prepare design models for their projects, but the focus should be on core workflows and critical processes, not on trivial operations.
+[Heading3] Design Models for Object Oriented Development Approach
+[] The applicable models for the project using object-oriented development approach may include:
+[ListParagraph] Activity Diagram (Activity diagrams are not required for trivial use cases such as Login, Logout, Edit Profile, View Profile, or other basic view/edit operations.)
+[ListParagraph] Class Diagram
+[ListParagraph] Sequence Diagram (Sequence diagrams are not required for trivial use cases such as Login, Logout, Edit/View Profile, or other basic view/edit operations.)
+[ListParagraph] State Transition Diagram (for the projects which include event handling and backend processes)
+[Heading3] Design Models for Procedural Approach
+[] The applicable models for the project using a procedural approach may include:
+[ListParagraph] Activity Diagram
+[ListParagraph] Data Flow Diagram (data flow diagram should be extended to 2-3 levels. It should clearly list all processes, their sources/sinks and data stores.)
+[ListParagraph] State Transition Diagram (for the projects which include event handling and backend processes)
+[] To view examples of all the above models, see Appendix C
+[Heading1] Data Design
+[] Explain how the information domain of your system is transformed into data structures. Describe how the major data or system entities are stored, processed, and organized.
+[] List any databases or data storage items.
+[Heading1] Chapter 4: Implementation
+[] This chapter discusses the implementation details of the project. You are not required to insert source code here; however, you must document the core module functionalities using pseudocode where applicable.Note: You are required to follow proper coding standard to write your source code. For guidelines, General Coding Standards & Guidelines are provided in Appendix D.
+[] In addition to pseudocode and UI/API documentation, if your implementation includes any techniques from Artificial Intelligence (AI), Machine Learning (ML), Deep Learning (DL), Data Science, or Cyber security, you must also include the following details wherever applicable:
+[ListParagraph] The specific technique/model/algorithm applied (e.g., Decision Trees, CNNs, Autoencoders, Encryption Algorithms).
+[ListParagraph] The dataset used (source, size, format, any preprocessing applied).
+[ListParagraph] Training procedure and evaluation methodology.
+[ListParagraph] Achieved metrics (accuracy, precision, recall, F1-score, confusion matrix, etc.).
+[ListParagraph] Explanation of how the implementation meets or supports the project’s objectives.
+[Heading1] Project Methodology & Algorithms
+[] This section explains the methodology (step-by-step approach) and the core algorithms that power the system. Students should avoid trivial operations (e.g., login, logout, simple CRUD) and instead focus on the methods and algorithms that:
+[] Enforce business rules
+[] Perform optimization or scheduling
+[] Implement intelligent features such as prediction, classification, or recommendation
+[Heading3] Project Methodology (Step-by-Step Approach)
+[] The methodology describes the overall approach taken to implement the system. Students must clearly describe each stage of their implementation pipeline, including what was done, how it was done, and why it was necessary.
+[] Template:
+[] Data Collection
+[] What: Describe the type of data collected (e.g., logs, sensor data, datasets).
+[] How: Mention the source (e.g., CICIDS dataset, IoT sensors, API).
+[] Why: Explain why this data is important for the project.
+[] Data Preprocessing
+[] Missing Values: Explain how you handled them (e.g., mean substitution, forward fill).
+[] Duplicates: Describe how duplicates were removed (e.g., unique IDs, timestamps).
+[] Normalization: Mention scaling technique if used (e.g., Min-Max scaling, standardization).
+[] Feature Extraction & Selection
+[] What: List the key features used (e.g., packet size, user review keywords, image attributes).
+[] How: Explain how features were extracted and irrelevant ones removed (e.g., correlation filtering, PCA).
+[] Model Training
+[] Algorithm(s): State the machine learning or AI models used (e.g., Random Forest, CNN, LSTM).
+[] Training: Mention dataset split (train/test) and evaluation method.
+[] Why: Explain why this model was chosen for the problem.
+[] Advanced Techniques (if applicable)
+[] NLP: If analyzing text (e.g., logs, reviews), describe tokenization, sentiment analysis, etc.
+[] Blockchain: If securing data, explain how transactions are stored immutably.
+[] Computer Vision: If using images, mention detection or classification methods.
+[] Deployment
+[] What: Describe the final system (web app, dashboard, mobile app).
+[] How: Mention deployment platform (e.g., cloud, server).
+[] Why: State the value of real-time access or monitoring.
+[] Example:
+[] Project Methodology
+[] The implementation of the Cybersecurity Threat Detection System followed the steps below:
+[] Data Collection
+[] Network traffic data was gathered from firewall logs and intrusion detection systems.
+[] Public cybersecurity datasets such as CICIDS and UNSW-NB15 were used to train and test the model.
+[] Data Preprocessing
+[] Missing values were filled using forward filling or average substitution.
+[] Duplicates were identified using session IDs and removed.
+[] Data was normalized using Min-Max scaling to prepare it for machine learning algorithms.
+[] Feature Extraction & Selection
+[] Key features such as packet size, protocol type, and connection duration were extracted.
+[] Highly correlated or redundant features were removed using correlation analysis to reduce noise.
+[] Machine Learning Model Training
+[] Random Forest and Deep Neural Networks were trained to classify traffic into normal or attack.
+[] Models were evaluated using accuracy, precision, recall, and F1-score.
+[] NLP-Based Log Analysis
+[] Security logs were processed with tokenization and keyword extraction.
+[] Suspicious activities (e.g., repeated login failures) were detected through pattern recognition.
+[] Blockchain-Based Security
+[] Detected attack records and alerts were logged in a blockchain ledger.
+[] This ensured that all events were tamper-proof and auditable.
+[] Deployment & Monitoring
+[] The trained models were deployed on a cloud platform.
+[] A real-time dashboard displayed alerts, anomalies, and system health for administrators.
+[Heading3] Algorithm
+[] This section documents the major algorithms that power the system. Students should avoid trivial operations such as login, logout, or simple CRUD actions. Instead, they should describe algorithms that:
+[] Enforce business rules
+[] Perform optimization or scheduling
+[] Implement intelligent features such as prediction, classification, or recommendation
+[] Each algorithm must include its name, input, output, and pseudocode steps. Following are some examples of documenting algorithms in pseudocode format.
+[] Table 4.1: Examples of Algorithms
+[] Algorithm Name
+[] Details
+[] DiscountCalculation (Business Rule)
+[] Input: OrderAmount Output: FinalPrice Pseudocode: 1: procedure DiscountCalculation(OrderAmount) 2:   Discount ← 0 3:   if OrderAmount ≥ 5000 then Discount ← 0.20 4:   else if OrderAmount ≥ 2000 then Discount ← 0.10 5:   else Discount ← 0.0 6:   FinalPrice ← OrderAmount – (OrderAmount * Discount) 7:   return FinalPrice 8: end procedure
+[] AppointmentScheduling (Optimization)
+[] Input: DoctorSchedule, PatientPreferredSlot Output: ConfirmedAppointment or “Slot Unavailable” Pseudocode: 1: procedure AppointmentScheduling(DoctorSchedule, PatientPreferredSlot) 2:   for each Slot in DoctorSchedule do 3:     if Slot == PatientPreferredSlot AND Slot is Available then 4:       ConfirmedAppointment ← Book(Patient, Slot) 5:       return ConfirmedAppointment 6:     end if 7:   end for 8:   return "Slot Unavailable" 9: end procedure
+[] SentimentPrediction (AI/Data Science)
+[] Input: TrainedModel, InputText Output: Sentiment (Positive/Negative) Pseudocode: 1: procedure SentimentPrediction(Model, Text) 2:   CleanedText ← preprocess(Text) 3:   Features ← vectorize(CleanedText) 4:   Prediction ← Model.predict(Features) 5:   if Prediction ≥ 0.5 then return “Positive” 6:   else return “Negative” 7: end procedure
+[Heading3] Guideline for Students
+[] Document 1–3 algorithms depending on your project.
+[] Use pseudocode instead of actual programming code.
+[] Select algorithms that represent core rules, optimization, or intelligent logic in the system.
+[Heading1] Training Results & Model Evaluation (Mandatory for AI/ML/Data Science Projects)
+[ListParagraph] Describe:
+[NormalWeb] Dataset used (name, source, pre-processing)
+[NormalWeb] Training setup (platform, GPU/CPU, batch size, epochs)
+[NormalWeb] Performance metrics
+[NormalWeb] Screenshots of graphs (loss, accuracy, confusion matrix, ROC if applicable)
+[Heading1] Security Techniques (if applicable)
+[ListParagraph] Describe techniques used for:
+[NormalWeb] Authentication (JWT, OAuth)
+[NormalWeb] Encryption (AES, RSA)
+[NormalWeb] Attack prevention (XSS, SQLi handling)
+[ListParagraph] If using a model for intrusion detection or anomaly detection, explain its results.
+[Heading1] External APIs/SDKs
+[] Describe the third-party APIs/SDKs used in the project implementation in the following table. Few examples of APIs are provided in the table.
+[Caption] Table 4.2 Details of APIs used in the project
+[] Name of API and version
+[] Description of API
+[] Purpose of usage
+[] List down the API endpoint/function/class in which it is used
+[] Stripe (version 2020-08-27)
+[] Credit Card payment integration
+[] Sandbox used for the orders payment
+[] stripe.paymentMethods.create
+[] Cloudinary
+[] Image and Video management solution
+[] Uploading Product Images on Cloudinary server
+[] https://api.cloudinary.com/v1_1/demo/image/upload
+[Heading1] User Interface
+[] Details about user interface with descriptions. Provide the User Interface for each sub-system (such as Mobile App, Web App, Client App, Admin App). Provide description of each User Interface explaining the details.
+[] When inserting User Interfaces, use appropriate size of the image, for example, for mobile app, 2-4 screens can be placed on a single page.
+[] Following are few examples of User Interfaces:
+[Heading3] Login Screen4.5.2 Home Screen
+[] Login screen of our mobile app where user Home screen where total, delayed and
+[] have to choose its role and its company.Other complaints are shown.
+[Caption] Figure 4.2 Home ScreenFigure 4.2 Home ScreenFigure 4.1 Login Screen
+[Caption] Figure 4.2 Home Screen
+[Caption] Figure 4.2 Home Screen
+[Heading3] Assignee Dashboard
+[] Complain Assignee can view the graphs of month-wise complains, Resolved complains, summary and a list of submitted complains.
+[Caption] Figure 4.3 Assignee Dashboard
+[Heading3] New Complaint
+[] Figure 4.4 New ComplaintFigure 4.4 New ComplaintComplain Assignee and Complainer can create a new complain by providing Description, Category, Title, Location etc.
+[Caption] Figure 4.4 New Complaint
+[Caption] Figure 4.4 New Complaint
+[Heading2] Deployment
+[] Specify the deployment environment used to host and test the application (e.g., Firebase, AWS, Azure, VPS). Mention details of cloud hosting, server configuration, backend frameworks, and relevant software stack including versions.
+[Heading1] Chapter 5: Testing and Evaluation
+[] Once the system has been successfully developed, testing has to be performed to ensure that the system working as intended. This is also to check that the system meets the requirements stated earlier. Besides that, system testing will help in finding the errors that may be hidden from the user. The testing must be completed before it is deployed for use.
+[] There are few types of testing which includes the unit testing, functional testing and integration testing.
+[] You are required to perform each of these in-depth to ensure system quality.
+[Heading2] Unit Testing
+[] Unit testing verifies the smallest testable components of the software (e.g., individual functions, methods, or classes) in isolation. The purpose is to ensure that each unit performs as expected, independent of the full system.
+[] At the FYP level:
+[] Software Engineering students may demonstrate automated unit tests using JUnit, PyTest, or similar frameworks.
+[] Other programs (CS, AI, Cybersecurity, Data Science) may show simplified unit-level tests where functions or algorithms are executed with inputs and outputs compared against expected results.
+[] Unit Testing 1:  validateEmail() function with valid and invalid credentials
+[] Testing Objective: To ensure the email validation function works correctly with valid and invalid inputs.
+[] No.
+[] Test case/Test script
+[] Attribute and Value
+[] Expected Result
+[] Actual Result
+[] 1
+[] Call validateEmail() with valid email
+[] "abc@gmail.com"
+[] Validates as correct email (True)
+[] True
+[] 2
+[] Call validateEmail() with invalid email
+[] "abc.gmail.com"
+[] Rejects input and returns False
+[] False
+[] 3
+[] Call validateEmail() with empty string
+[] ""
+[] Rejects input and returns False
+[] False
+[Heading2] Functional Testing
+[] Functional testing validates that the system modules work correctly as a whole, ensuring that the developed system meets its specifications and requirements. Unlike unit testing, which focuses on internal functions, functional testing evaluates user-facing features through the UI or APIs.
+[] Functional Testing 1: Login with different roles (Management, Patient, Doctor)
+[] Objective: To ensure that the correct page with the correct navigation bar is loaded.
+[] No.
+[] Test Case
+[] Attribute and value
+[] Expected Result
+[Default] Actual Result
+[] Result
+[] 1
+[Default] Login as ‘Management’
+[] Username: M003, Password: 1234
+[] Management dashboard with navigation bar is displayed
+[Default] Redirected to Management main page
+[] Pass
+[] 2
+[] Login as ‘Doctor’
+[] Username: D003, Password: 1234
+[] Doctor dashboard with navigation bar is displayed
+[] Login failed – invalid credentials error
+[] Fail
+[Heading2] Business Rules Testing
+[] Decision table based testing technique is used to test business rules. The business rules were defined in FRs and Use Cases
+[] Decision based testing uses a systematic approach where input and outputs are provided in tabular form. It is a precise and compact way to model complicated logic. The table contains conditions and actions are used for test cases where conditions as inputs and actions as outputs.
+[] Detailed example is as given in Appendix E.
+[Heading2] Integration Testing
+[] Integration testing verifies that different modules of the system work together correctly. Unlike unit testing (which checks isolated functions) and functional testing (which checks features from a user’s perspective), integration testing focuses on the interfaces, linkages, and data flow between modules developed by different team members.
+[] Since FYPs are team-based, integration testing is essential to ensure that the combined work of individual members forms a functioning system. Students must design at least one or two integration scenarios to demonstrate how modules interact and exchange data.
+[] Integration Testing 1:   Scheduling Patient Appointment
+[] Testing Objective: To ensure the scheduling is being done correctly and the interface between module ‘Patient/Doctor Management’ and module ‘Appointment/Scheduling’ is running correctly.
+[] No.
+[Default] Test case/Test script
+[Default] Attribute and value
+[Default] Expected result
+[Default] Actual result
+[Default] Result
+[] 1
+[Default] Create Appointment (Patient ↔ Doctor ↔ Scheduler)
+[] Doctor schedule, Patient’s preferred date/time
+[Default] Appointment record created with correct doctor, patient, and date/time
+[Default] Appointment created successfully
+[] Pass
+[] 2
+[Default] Update Appointment (Scheduler ↔ Database ↔ Notification)
+[] Select new date/time
+[Default] Appointment updated and linked records (database + notification) reflect change
+[Default] Appointment updated successfully
+[Default] Pass
+[Heading1] Chapter 6: Conclusion and Future Work
+[] This chapter concludes the project and highlights future work.
+[Heading2] Conclusion
+[] The conclusion section should provide a reflective summary of the entire project, linking back to the original objectives stated in the introduction. It serves to consolidate the project’s achievements and highlight how effectively the problem was addressed.
+[NormalWeb] Summarize the overall project goal and what has been achieved.
+[NormalWeb] Reflect on how the system solves the defined problem presented in Chapter 1.
+[NormalWeb] Highlight the major features and functionalities implemented.
+[NormalWeb] Discuss any limitations encountered during development or deployment.
+[NormalWeb] Comment on how the system improves the experience for users and administrators.
+[Heading2] Future Work
+[] The future work section outlines possible enhancements, extensions, or research directions that can improve the system beyond its current scope. This demonstrates forward-thinking and helps future developers or researchers build upon the foundation laid by your project.
+[NormalWeb] Identify features that were planned but not implemented due to time or scope constraints.
+[NormalWeb] Suggest technical enhancements (e.g., AI-based recommendation engine, advanced analytics, chatbot integration).
+[NormalWeb] Recommend UI/UX improvements based on user feedback or usability testing.
+[NormalWeb] Propose system scaling strategies, such as multi-branch deployment or cloud-based hosting.
+[NormalWeb] Mention potential integrations with external systems (e.g., ERP, biometric attendance, IoT devices).
+[NormalWeb] Highlight opportunities for applying machine learning, automation, or predictive analysis.
+[NormalWeb] Discuss how future versions could better align with evolving user needs or emerging technologies.
+[Heading1] Chapter 7: References
+[InfoBlue] List any documents or other resources to which this SRS refers, if any. These might include user interface style guides, standards, system requirements specifications, interface specifications, or the SRS for a related product. The following are a few examples of different resources.
+[BodyText] Example:
+[] Book
+[] Author(s). Book title. Location: Publishing company, year, pp.
+[] Example:
+[] W.K. Chen. Linear Networks and Systems. Belmont, CA: Wadsworth, 1993, pp. 123-35.
+[] Article in a Journal
+[] Author(s). “Article title”. Journal title, vol., pp, date.
+[] Example:
+[] G. Pevere. “Infrared Nation.” The International Journal of Infrared Design, vol. 33, pp. 56-99, Jan. 1979.
+[] Articles from Conference Proceedings (published)
+[] Author(s). “Article title.” Conference proceedings, year, pp.
+[] Example:
+[] D.B. Payne and H.G. Gunhold. “Digital sundials and broadband technology,” in Proc. IOOC-ECOC, 1986, pp. 557-998.
+[] World Wide Web
+[] Author(s)*. “Title.” Internet: complete URL, date updated* [date accessed].
+[] M. Duncan. “Engineering Concepts on Ice. Internet: www.iceengg.edu/staff.html, Oct. 25, 2000 [Nov. 29, 2003].
+[Heading1] Chapter 8: Plagiarism Report
+[] Attach the Plagiarism report of your project scope document from library staff of turnitin tool (http://turnitin.com)
+[Heading1] Appendix A
+[Heading2] Example: Context Diagram
+[] The Cafeteria Ordering System is a new software system that replaces the current manual and telephone processes for ordering and picking up meals in the Process Impact cafeteria. The context diagram in Figure 1 illustrates the external entities and system interfaces.
+[Caption] Figure A1: Context diagram of the Cafeteria Ordering System.
+[Heading2] Example: User Classes and Characteristics
+[Caption] Table A-1 Shows user classes and character
+[] User class
+[] Description
+[Pa49] Patron
+[Pa49] A Patron is a Process Impact employee who wants to order meals to be delivered from the company cafeteria. There are about 600 potential Patrons, of which 300 are expected to use the COS an average of 5 times per week each. Patrons will sometimes order multiple meals for group events or guests. An estimated 60 percent of orders will be placed using the corporate intranet, with 40 percent of orders being placed from home or by smartphone or tablet apps.
+[Pa49] Cafeteria Staff
+[Pa49] The Process Impact cafeteria employs about 20 Cafeteria Staff who will receive orders from the COS, prepare meals, package them for delivery, and request delivery. Most of the Cafeteria Staff will need training in the use of the hardware and software for the COS.
+[Pa49] Menu Manager
+[Pa49] The Menu Manager is a cafeteria employee who establishes and maintains daily menus of the food items available from the cafeteria. Some menu items may not be available for delivery. The Menu Manager will also define the cafeteria’s daily specials. The Menu Manager will need to edit existing menus periodically.
+[Pa49] Meal Deliverer
+[Pa49] As the Cafeteria Staff prepare orders for delivery, they will issue delivery requests to a Meal Deliverer’s smartphone. The Meal Deliverer will pick up the food and deliver it to the Patron. A Meal Deliverer's other interactions with the COS will be to confirm that a meal was (or was not) delivered.
+[Heading2] Example: Use case Diagram
+[] Following use case diagram is of an appointment system in which all the use case diagram relationships are presented. In further in Table A-2 to the detail of use case diagram syntax is provided.
+[Caption] Figure A-2: Use Case Diagram of an Appointment System
+[Heading3] Syntax for Use case Diagram
+[Caption] Table A-2 Syntax for Use case Diagram
+[Pa49] An actor:
+[Pa49] ■ Is a person or system that derives benefit from and is external to the subject.
+[Pa49] ■ Is depicted as either a stick figure (default) or, if a nonhuman actor is involved, a
+[Pa49] rectangle with <<actor>> in it (alternative).
+[Pa49] ■ Is labeled with its role.
+[Pa49] ■ Can be associated with other actors using a specialization/superclass association,
+[Pa49] denoted by an arrow with a hollow arrowhead.
+[Pa49] ■ Is placed outside the subject boundary.
+[Pa49] A use case:
+[Pa49] ■ Represents a major piece of system functionality.
+[Pa49] ■ Can extend another use case.
+[Pa49] ■ Can include another use case.
+[Pa49] ■ Is placed inside the system boundary.
+[Pa49] ■ Is labeled with a descriptive verb–noun phrase.
+[Pa49] subject boundary:
+[Pa49] ■ Includes the name of the subject inside or on top.
+[Pa49] ■ Represents the scope of the subject, e.g., a system or an individual
+[Pa49] business process.
+[Pa49] An association relationship:
+[Pa49] ■ Links an actor with the use case(s) with which it interacts.
+[Pa49] An include relationship:
+[Pa49] ■ Represents the inclusion of the functionality of one use case within another.
+[Pa49] ■ Has an arrow drawn from the base use case to the used use case.
+[Pa49] An extend relationship:
+[Pa49] ■ Represents the extension of the use case to include optional behavior.
+[Pa49] ■ Has an arrow drawn from the extension use case to the base use case.
+[Pa49] A generalization relationship:
+[Pa49] ■ Represents a specialized use case to a more generalized one.
+[Pa49] ■ Has an arrow drawn from the specialized use case to the base use case.
+[Heading2] Example: Mockup-Based Requirement Analysis
+[] This appendix presents a sample application of Mockup-Based Requirement Analysis, demonstrating how functional requirements can be systematically derived from UI mockups. This approach replaces traditional use case descriptions with a more visual, interaction-driven technique suitable for modern, user-centric applications.
+[] The example includes:- Annotated UI mockups- Functional requirements identified from screen elements- A structured tabular format using Mockup IDs for traceability
+[Heading2] Mockup M1 – Login Page
+[Caption] Figure A-3: Mockup M1 for Login Page
+[Heading3] Functional Requirements Derived from Mockup M1 – Login Page
+[Caption] Table A-3: Functional Requirements Derive from Mockup M1
+[] Feature (derived from UI)
+[] Functional Requirement (FR-ID: Statement)
+[] Business Rule
+[] User Sign-In
+[] FR1.1: The system shall allow the user to provide valid login credentials (email and password).
+[] The email must follow standard format (e.g., name@example.com). The password must be at least 8 characters and contain letters and numbers.
+[] User Authentication
+[] FR1.2: The system shall validate the provided credentials against stored records.
+[] Accounts will be locked after 5 failed login attempts.
+[] Password Recovery
+[] FR1.3: The system shall allow users to initiate password recovery when requested.
+[] Only registered users can initiate password recovery.
+[] Remember Me Option
+[] FR1.4: The system shall allow users to stay signed in on the same device by selecting “Remember Me”.
+[] The session should remain active until the user logs out manually or clears cookies.
+[Heading2] Mockup M2 – Dashboard Page
+[Caption] Figure A-4: Mockup M2 for Dashboard Page
+[Heading3] Functional Requirements Derived from Mockup M2– Dashboard Page
+[Caption] Table A-4: Functional Requirements Derive from Mockup M2
+[] Feature (derived from UI)
+[] Functional Requirement (FR-ID: Statement)
+[] Business Rule
+[] Navigation & Access Control
+[] FR2.1: The system shall provide access to different sections such as Dashboard, Orders, Products, Customers, and Settings through a vertical navigation menu.
+[] Menu items depend on the user’s role and permissions.
+[] Personalized Dashboard
+[] FR2.2: The system shall display a personalized welcome message showing the authenticated user’s name.
+[] User’s name is retrieved from the authenticated session.
+[] Order Metrics
+[] FR2.3: The system shall display the total number of orders in real-time.
+[] Order count is updated directly from the orders database.
+[] Product Metrics
+[] FR2.4: The system shall display the total number of active products.
+[] Displayed product count includes only active products.
+[] Customer Metrics
+[] FR2.5: The system shall display the total number of verified customers.
+[] Customer count includes only verified accounts.
+[] Recent Orders Listing
+[] FR2.6: The system shall display a list of recent orders including order ID, customer name, and order status.
+[] Orders must be sorted by most recent date.
+[] Scrollable Order List
+[] FR2.7: The system shall allow scrolling or pagination in the recent orders section if the list exceeds the visible area.
+[] Maximum 10 orders are shown per page before scrolling is required.
+[] Order Status Indicators
+[] FR2.8: The system shall display visual indicators (badges) to represent order statuses (Pending, Shipped, Delivered).
+[] Color codes must follow the design system: Yellow=Pending, Blue=Shipped, Green=Delivered.
+[Caption] Event-Response Tables
+[] In order to develop Event Response table first it is required to identify all possible events. Following is an example of events list and event-response table of highway intersection system.
+[Pa1] The highway intersection system described earlier has to deal with various events, including these:
+[ListParagraph] A sensor detects a car approaching in one of the through lanes.
+[ListParagraph] A sensor detects a car approaching in a left-turn lane.
+[ListParagraph] A pedestrian presses a button to request to cross a street.
+[ListParagraph] One of many timers counts down to zero.
+[Pa1] Table A-5 presents a fragment of what an event-response table might look like for such a system. Each expected system behavior consists of a combination of event, system state, and response.
+[] Note: You may add more information to event-response table in order to perform detail requirement analysis which includes:
+[ListParagraph] The event frequency (how many times the event takes place in a given time period, or a limit to how many times it can occur).
+[ListParagraph] Data elements that are needed to process the event.
+[ListParagraph] The state of the system after the event responses is executed.
+[Caption] Table A-5 Partial Event-Response Table for a Highway Intersection
+[] Event
+[] System State
+[] Response
+[NormalWeb] Road sensor detects
+[NormalWeb] vehicle entering left-turn
+[] lane.
+[NormalWeb] Left-turn signal is red. Cross-traffic signal is green.
+[NormalWeb] Start green-to-amber
+[NormalWeb] countdown timer for cross-traffic
+[] signal.
+[NormalWeb] Green-to-amber
+[NormalWeb] countdown timer reaches
+[] zero.
+[NormalWeb] Cross-traffic signal is green.
+[NormalWeb] 1. Turn cross-traffic signal amber.
+[NormalWeb] 2. Start amber-to-red countdown timer.
+[NormalWeb] Amber-to-red
+[NormalWeb] countdown timer reaches
+[] zero.
+[NormalWeb] Cross-traffic signal is amber.
+[NormalWeb] 1. Turn cross-traffic signal red.
+[NormalWeb] 2. Wait 1 second.
+[NormalWeb] 3. Turn left-turn signal green.
+[NormalWeb] 4. Start left-turn-signal countdown timer.
+[NormalWeb] Pedestrian presses a
+[NormalWeb] specific walk-request
+[] button.
+[NormalWeb] Pedestrian sign is solid Don’t Walk.
+[NormalWeb] Walk-request countdown timer is not activated.
+[NormalWeb] Start walk-request countdown timer.
+[NormalWeb] Pedestrian presses
+[] walk-request button.
+[NormalWeb] Pedestrian sign is solid Don’t Walk.
+[NormalWeb] Walk-request countdown timer is activated.
+[] Do nothing.
+[NormalWeb] Walk-request
+[NormalWeb] countdown timer reaches
+[NormalWeb] zero plus the amber
+[] display time.
+[NormalWeb] Traffic signal in walk
+[] direction is green.
+[NormalWeb] Change all green traffic signals to amber.
+[NormalWeb] Walk-request
+[NormalWeb] countdown timer reaches
+[] zero.
+[NormalWeb] Traffic signal in walk
+[] direction is amber.
+[NormalWeb] 1. Change all amber traffic signals to red.
+[NormalWeb] 2. Wait 1 second.
+[NormalWeb] 3. Set pedestrian sign to Walk.
+[NormalWeb] 4. Start don’t-walk countdown timer.
+[Heading1] Appendix B
+[Heading2] Conceptual Architecture Example – Online Shopping Mall
+[] This appendix provides a detailed example of conceptual system architecture for an Online Shopping Mall platform. It includes a conceptual view diagram, a brief explanation of major components, and a tabular representation of associated technologies, services, and responsibilities to guide students in developing their own architecture models.
+[Heading3] Example:
+[] B-1 This diagram presents a high-level conceptual architecture for an online shopping mall, showing major system components, service layers, and technology mapping.B-1 This diagram presents a high-level conceptual architecture for an online shopping mall, showing major system components, service layers, and technology mapping.
+[Caption] B-1 This diagram presents a high-level conceptual architecture for an online shopping mall, showing major system components, service layers, and technology mapping.
+[Caption] B-1 This diagram presents a high-level conceptual architecture for an online shopping mall, showing major system components, service layers, and technology mapping.
+[Caption] Table B-1 Key Components and Services in Online Shopping Mall Architecture
+[] Component
+[] Description
+[] Technology Used
+[] Security/Integration
+[] User Interface Layer
+[] Web and mobile interfaces for users to browse, order, and interact with the system.
+[] Flutter, React, HTML5/CSS3
+[] HTTPS, Token-based Auth
+[] Application Layer
+[] Handles business logic like order management, cart updates, and payment workflows.
+[] Node.js, Django
+[] Role-Based Access, Logging
+[] Database Layer
+[] Stores user data, product catalogs, order histories, and payment records.
+[] MySQL, Firebase
+[] Encrypted Storage, Backup
+[] Payment Gateway
+[] Facilitates secure payment transactions and confirmation of order placements.
+[] Stripe, PayPal
+[] PCI-DSS Compliance
+[] Admin Panel
+[] Accessible to sellers/admins to add products, view orders, manage customers.
+[] Angular, Spring Boot
+[] Admin-Only Access, Logs
+[] APIs and Services
+[] Provides modular communication between client and backend layers.
+[] REST, GraphQL
+[] OAuth2, API Gateway
+[] Notification Service
+[] Sends email, SMS, or push updates for order status and promotions.
+[] Firebase Cloud Messaging
+[] Verified Sender ID
+[] Note:
+[] For a detailed understanding of conceptual system architecture, refer to the following textbooks:- Ian Sommerville, “Software Engineering”, 10th Edition, Chapter 6 (Architectural Design)- Roger Pressman & Bruce R. Maxim, “Software Engineering: A Practitioner’s Approach”, 9th Edition, Chapter 13 (Architectural Design)
+[Heading2] Example of Architecture Pattern:
+[] The figure B-2 shows an example of the logical package organization of the layered architecture. The top level deals with user interface, the next level is for utilities, and the one below utility provides core services. Each layer gets support from its lower adjacent layer by an interface implementation and from the related classes in the same layer.
+[] A simple software system may consist of two layers: an interaction layer and a processing layer:
+[] The interaction layer provides user interfaces to clients, takes requests, validates and forwards requests to the processing layer for processing, and responds to clients.
+[] The processing layer receives the forwarded requests and performs the business logic process, accesses the database, returns the results to its upper layer, and lets the upper layer respond to clients since the upper layer has the GUI interface responsibility.
+[] B-2 Component-based Layered ArchitectureB-2 Component-based Layered Architecture
+[Caption] B-2 Component-based Layered Architecture
+[Caption] B-2 Component-based Layered Architecture
+[] Note: The Architecture pattern shall be selected according to the targeted system’s requirements and quality attributes. Above example is provided to demonstrate how the system architecture is required to be presented.
+[Heading1] Appendix C
+[Heading2] Design Models
+[Heading2] Activity Diagram
+[] Following activity diagram is of an appointment system presenting make an appointment process in which all diagram’s elements are presented. In further in Table C-1 to the detail of activity diagram syntax is provided.
+[] Figure C-1 Activity Diagram for Make an Appointment ProcessFigure C-1 Activity Diagram for Make an Appointment ProcessExample
+[Caption] Figure C-1 Activity Diagram for Make an Appointment Process
+[Caption] Figure C-1 Activity Diagram for Make an Appointment Process
+[Heading3] Activity Diagram Syntax
+[Caption] Table C-1 Activity Diagram Syntax
+[] Term and definition
+[] Symbol
+[] An action:
+[] Is a simple, non-decomposable piece of behavior.
+[] Is labeled by its name.
+[] An activity:
+[] Is used to represent a set of actions.
+[] Is labeled by its name.
+[] An object node:
+[] Is used to represent an object that is connected to a set of object flows.
+[] Is labeled by its class name.
+[] A control flow:
+[] Shows the sequence of execution.
+[] An object flow:
+[] Shows the flow of an object from one activity (or action) to another activity (or action).
+[] An initial node:
+[] Portrays the beginning of a set of actions or activities.
+[] A final-activity node:
+[] Is used to stop all control flows and object flows in an activity (or action).
+[] A final-flow node:
+[] Is used to stop a specific control flow or object flow.
+[] A decision node:
+[] Is used to represent a test condition to ensure that the control flow or object flow only goes down one path.
+[] Is labeled with the decision criteria to continue down the specific path.
+[] A merge node:
+[] Is used to bring back together different decision paths that were created using a decision node.
+[] A fork node:
+[] Is used to split behavior into a set of parallel or concurrent flows of activities (or action)
+[] A join node:
+[] Is used to bring back together a set of parallel or concurrent flows of activities (or action)
+[] A swimlane:
+[] Is used to break up an activity diagram into rows and columns to assign the individual activities (or actions) to the individuals or objects that are responsible for executing the activity (or action)
+[] Is labeled with the name of the individual or object responsible
+[Heading2] Class Diagram
+[] Following class diagram is of an appointment system in which all class diagrams elements are presented. In further in Table C-2 to the detail of class diagram syntax is provided.
+[Heading3] Example
+[] Figure C-2 Class Diagram for an Appointment SystemFigure C-2 Class Diagram for an Appointment System
+[Caption] Figure C-2 Class Diagram for an Appointment System
+[Caption] Figure C-2 Class Diagram for an Appointment System
+[Heading3] Class Diagram Syntax
+[Caption] Table C- 2 Class Diagram Syntax
+[] Term and definition
+[] Symbol
+[] A class:
+[] Has a name typed in bold and centered in its top compartment.
+[] Has a list of attributes in its middle compartment.
+[] Represents a kind of person, place, or thing about which the system will need to capture and store information.
+[] Has a list of operations in its bottom compartment.
+[] Does not explicitly show operations that are available to all classes.
+[] An attribute:
+[] Represents properties that describe the state of an object.
+[] Can be derived from other attributes, shown by placing a slash before the attribute’s name.
+[] attribute name
+[] /derived attribute name
+[] An operation:
+[] Represents the actions or functions that a class can perform.
+[] Can be classified as a constructor, query, or update operation.
+[] Includes parentheses that may contain parameters or information needed to perform the operation.
+[] operation name ()
+[] An association:
+[] Represents a relationship between multiple classes or a class and itself.
+[] Is labeled using a verb phrase or a role name, whichever better represents the relationship.
+[] Can exist between one or more classes.
+[] Contains multiplicity symbols, which represent the minimum and maximum times a class instance can be associated with the related class instance.
+[] A generalization:
+[] Represents a-kind-of relationship between multiple classes.
+[] An aggregation:
+[] Represents a logical a-part-of relationship between multiple classes or a class and itself.
+[] Is a special form of an association.
+[] A composition:
+[] Represents a physical a-part-of relationship between multiple classes or a class and itself
+[] Is a special form of an association.
+[Heading2] Sequence Diagram
+[] Following example shows an instance sequence diagram that depicts the objects and messages for the Make Old Patient Appt use case, which describes the process by which an existing patient creates a new appointment or cancels or reschedules an appointment. In further in Table C-3 to the detail of class diagram syntax is provided.
+[] Example
+[] Figure C-3 Example Sequence DiagramFigure C-3 Example Sequence Diagram
+[Caption] Figure C-3 Example Sequence Diagram
+[Caption] Figure C-3 Example Sequence Diagram
+[Heading3] Sequence diagram Syntax
+[Caption] Table C-3 Sequence Diagram Syntax
+[] Term and definition
+[] Symbol
+[] An actor:
+[] Is a person or system that derives benefit from and is external to the system.
+[] Participates in a sequence by sending and/or receiving messages.
+[] Is placed across the top of the diagram.
+[] Is depicted either as a stick figure (default) or, if a nonhuman actor is involved, as a rectangle with <<actor>> in it (alternative).
+[] An object:
+[] Participates in a sequence by sending and/or receiving messages.
+[] Is placed across the top of the diagram.
+[] A lifeline:
+[] Denotes the life of an object during a sequence.
+[] Contains an X at the point at which the class no longer interacts.
+[] An execution occurrence:
+[] Is a long narrow rectangle placed atop a lifeline.
+[] Denotes when an object is sending or receiving messages.
+[] A message:
+[] Conveys information from one object to another one.
+[] An operation call is labeled with the message being sent and a solid arrow, whereas a return is labeled with the value being returned and shown as a dashed arrow.
+[] A guard condition:
+[] Represents a test that must be met for the message to be sent.
+[] For object destruction:
+[] An X is placed at the end of an object’s lifeline to show that it is going out of existence.
+[] A frame:
+[] Indicates the context of the sequence diagram.
+[Heading2] Behavioral State Machine Diagram
+[] Following example of a behavioral state machine representing the patient class in the context of a hospital environment. From this diagram, we can tell that a patient enters a hospital and is admitted after checking in. If a doctor finds the patient to be healthy, he or she is released and is no longer considered a patient after two weeks elapse. If a patient is found to be unhealthy, he or she remains under observation until the diagnosis changes.
+[] Example
+[] Figure C-4 Sample Behavioral State Machine DiagramFigure C-4 Sample Behavioral State Machine Diagram
+[Caption] Figure C-4 Sample Behavioral State Machine Diagram
+[Caption] Figure C-4 Sample Behavioral State Machine Diagram
+[Heading3] Behavioral State Machine Diagram Syntax
+[Caption] Table C-4 Behavioral State Machine Diagram Syntax
+[] Term and definition
+[] Symbol
+[] A state:
+[] Is shown as a rectangle with rounded corners.
+[] Has a name that represents the state of an object.
+[] An initial state:
+[] Is shown as a small, filled-in circle.
+[] Represents the point at which an object begins to exist.
+[] A final state:
+[] Is shown as a circle surrounding a small, filled-in circle (bull's-eye).
+[] Represents the completion of activity.
+[] An event:
+[] Is a noteworthy occurrence that triggers a change in state.
+[] Can be a designated condition becoming true, the receipt of an explicit signal from one object to another, or the passage of a designated period of time.
+[] Is used to label a transition.
+[] A transition:
+[] Indicates that an object in the first state will enter the second state.
+[] Is triggered by the occurrence of the event labeling the transition.
+[] Is shown as a solid arrow from one state to another, labeled by the event name.
+[] A frame:
+[] Indicates the context of the behavioral state machine.
+[Heading2] Data Flow Diagram
+[] Figure C-5 Data flow diagram symbols, symbol names, and examples of the Gane and Sarson and Yourdon symbol sets.Figure C-5 Data flow diagram symbols, symbol names, and examples of the Gane and Sarson and Yourdon symbol sets.Data flow diagram symbols, symbol names, and examples
+[Caption] Figure C-5 Data flow diagram symbols, symbol names, and examples of the Gane and Sarson and Yourdon symbol sets.
+[Caption] Figure C-5 Data flow diagram symbols, symbol names, and examples of the Gane and Sarson and Yourdon symbol sets.
+[Heading3] Guidelines for Drawing DFDs
+[] Step 1: Draw a Context Diagram: The first step in constructing a set of DFDs is to draw a context diagram. A context diagram is a top-level view of an information system that shows the system’s boundaries and scope. Data stores are not shown in the context diagram because they are contained within the system and remain hidden until more detailed diagrams are created.
+[] Example
+[] Figure C-6 Context diagram DFD for an order system.Figure C-6 Context diagram DFD for an order system.
+[Caption] Figure C-6 Context diagram DFD for an order system.
+[Caption] Figure C-6 Context diagram DFD for an order system.
+[] Step 2: Draw a Diagram 0 DFD: To show the detail inside the black box, you create DFD diagram 0. Diagram 0 zooms in on the system and shows major internal processes, data flows, and data stores. Diagram 0 also repeats the entities and data flows that appear in the context diagram. When you expand the context diagram into DFD diagram 0, you must retain all the connections that flow into and out of process 0.
+[] Figure C-7 Diagram 0 DFD for the order system.Figure C-7 Diagram 0 DFD for the order system.Example
+[Caption] Figure C-7 Diagram 0 DFD for the order system.
+[Caption] Figure C-7 Diagram 0 DFD for the order system.
+[] Step 3: Draw the Lower-Level Diagrams:
+[] To create lower-level diagrams, you must use leveling and balancing techniques. Leveling is the process of drawing a series of increasingly detailed diagrams, until all functional primitives are identified.
+[] Figure C-8 Diagram 1 DFD shows details of the FILL ORDER process in the order system.Figure C-8 Diagram 1 DFD shows details of the FILL ORDER process in the order system.Leveling Example
+[Caption] Figure C-8 Diagram 1 DFD shows details of the FILL ORDER process in the order system.
+[Caption] Figure C-8 Diagram 1 DFD shows details of the FILL ORDER process in the order system.
+[] Balancing maintains consistency among a set of DFDs by ensuring that input and output data flows align properly.
+[] Balancing Example
+[] Order System Diagram 0 DFD
+[Caption] Figure C-9 Diagram 0 DFD for the order system
+[] Order System Diagram 3 DFD
+[Caption] Figure C-10 Diagram 1 DFD shows details of the APPLY PAYMENT process in the order system.
+[] The order system diagram 0 is shown at the top of the figure and exploded diagram 3 DFD (for the APPLY PAYMENT process) is shown at the bottom. The two DFDs are balanced, because child diagram at the bottom has the same input and output flows as the parent process 3 shown at the top.
+[Heading1] Appendix D
+[Heading2] General Coding Standards & Guidelines
+[ListParagraph] Follow a consistent variable naming convention throughout the code. E.g.
+[ListParagraph] Snakecase (words are delimited by “_” like: variable_one)
+[ListParagraph] Pascalcase (words are delimited by capital letters like: VariableOne)
+[ListParagraph] Camelcase (words are delimited by capital letters except the initial word like: variableOne)
+[ListParagraph] Hungarian Notation (describes the variable type or purpose at the start of the variable name like: arrDistributeGroup)
+[ListParagraph] Use naming that visually describes scope like privateField, Const etc
+[ListParagraph] Use read only/immutable when a field’s value should not be changed after initialization
+[ListParagraph] Use only get, for properties that should not be updated from outside
+[ListParagraph] Name functions according to their functionalities.
+[ListParagraph] Insert appropriate comments to make the code understandable to any reader. Additionally follow a consistent style to do so. E.g.
+[ListParagraph] /* the below function will be used for the addition of two variables*/
+[ListParagraph] int Add(){
+[ListParagraph] //logic of the function
+[ListParagraph] }
+[ListParagraph] Avoid commenting on obvious things
+[ListParagraph] Make use of indentation for indicating the start and end of the control structures along with a clear specification of where the code is between them.
+[ListParagraph] Follow consistent naming convention for files and folders.
+[ListParagraph] Follow proper structure for classes
+[ListParagraph] Group code entities logically into projects/packages/modules/folders
+[ListParagraph] Separate logical layers of application into different modules/services/utilities etc.
+[ListParagraph] User separate files for each class, struct, interface, enum etc. Name of the file and the enclosing entity must be same. E.g., class Employee in Employee.cs/Employee.java
+[ListParagraph] Define and use everything within the minimum scope possible
+[ListParagraph] Use proper access modifier for all code entities if required
+[ListParagraph] Code entities should have maximum cohesion and least coupling possible.
+[ListParagraph] Follow DRY law.
+[ListParagraph] Do not repeat code.
+[ListParagraph] A piece of knowledge should exist only in one place within the codebase/application
+[ListParagraph] Reuse code as much as possible
+[ListParagraph] Always write short methods
+[ListParagraph] Single method should not have too many logic, long conditional flow or too many parameters
+[ListParagraph] Strictly follow Single Responsibility Principle (SRP) when writing methods, classes, modules, projects, packages, or any other code entities.
+[ListParagraph] Write classes and other code entities that are easy to extend without modification.
+[ListParagraph] Handle exceptions
+[ListParagraph] Log exception and other significant event details
+[ListParagraph] Follow a consistent convention for logging all over the application
+[Heading1] Appendix E
+[Heading2] Business rules testing
+[] Methodology for creating decision table:
+[Heading3] Example:
+[] The provided example is of a super store.
+[ListParagraph] Now Combine rules where it is apparent that an alternative does not make a difference in the outcome
+[] This is the final table and now you have to create test cases on every rule. In above example there are 6 rules so there shall be 6 test cases.

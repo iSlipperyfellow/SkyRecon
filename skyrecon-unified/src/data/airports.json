@@ -1,0 +1,81 @@
+{
+  "airports": [
+    {
+      "id": "kia-karachi",
+      "name": "Karachi International Airport (KIA)",
+      "code": "KIA",
+      "region": "Sindh, Pakistan",
+      "coordinates": [24.8406, 67.1607],
+      "zoom": 15,
+      "runways": [
+        {
+          "id": "runway-1",
+          "name": "Runway 09L/27R",
+          "length": 3680,
+          "width": 60,
+          "coordinates": [[24.8356, 67.1557], [24.8356, 67.1807]],
+          "hazardZone": 0.5
+        },
+        {
+          "id": "runway-2",
+          "name": "Runway 09R/27L",
+          "length": 3680,
+          "width": 60,
+          "coordinates": [[24.8456, 67.1557], [24.8456, 67.1807]],
+          "hazardZone": 0.5
+        }
+      ],
+      "taxiways": [
+        {
+          "id": "taxiway-a",
+          "name": "Taxiway A",
+          "coordinates": [[24.8356, 67.1557], [24.8356, 67.1400]],
+          "width": 30
+        }
+      ],
+      "terminals": [
+        {
+          "id": "terminal-1",
+          "name": "Terminal 1",
+          "coordinates": [24.8200, 67.1500],
+          "type": "international"
+        }
+      ],
+      "grid": {
+        "spacing": 0.001,
+        "color": "rgba(100, 150, 200, 0.1)"
+      }
+    },
+    {
+      "id": "jia-dubai",
+      "name": "Dubai International Airport (OMDB)",
+      "code": "OMDB",
+      "region": "Dubai, UAE",
+      "coordinates": [25.2528, 55.3644],
+      "zoom": 14,
+      "runways": [
+        {
+          "id": "runway-1",
+          "name": "Runway 08L/26R",
+          "length": 4000,
+          "width": 60,
+          "coordinates": [[25.2528, 55.3344], [25.2528, 55.3944]],
+          "hazardZone": 0.5
+        }
+      ],
+      "taxiways": [],
+      "terminals": [
+        {
+          "id": "terminal-1",
+          "name": "Terminal 1",
+          "coordinates": [25.2600, 55.3700],
+          "type": "international"
+        }
+      ],
+      "grid": {
+        "spacing": 0.001,
+        "color": "rgba(100, 150, 200, 0.1)"
+      }
+    }
+  ]
+}
