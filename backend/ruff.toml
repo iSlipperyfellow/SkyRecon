@@ -1,0 +1,20 @@
+[lint]
+# Ignore rules that are common in Django projects and produce false positives
+# or require large-scale refactoring not appropriate for this project stage.
+ignore = [
+    "RUF012",   # Mutable class attributes (permission_classes, filter_backends etc. in Django ViewSets)
+    "BLE001",   # Do not catch blind Exception - common pattern in Django/async views
+    "DTZ005",   # datetime.now() without tz - acceptable in this project's context
+    "PIE810",   # endswith/startswith tuple - minor style preference
+    "SIM115",   # Use context manager for open() - FileResponse requires non-context open
+    "PLW1508",  # Invalid env variable default type - int default is intentional
+    "E501",     # Line too long - handled by Black formatter
+    "F401",     # Unused imports - some are re-exported for Django router registration
+]
+
+# Only check source files, skip migrations and test fixtures
+exclude = [
+    "migrations/",
+    ".venv",
+    "venv",
+]

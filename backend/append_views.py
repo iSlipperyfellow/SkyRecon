@@ -1,4 +1,4 @@
-with open('core/views.py', 'a') as f:
+with open("core/views.py", "a") as f:
     f.write('''\n
 from core.models import Hazard
 from core.serializers import HazardSerializer

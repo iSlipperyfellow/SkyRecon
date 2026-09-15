@@ -4,9 +4,10 @@ Test configuration and fixtures
 
 import pytest
 from django.contrib.auth import get_user_model
-from django.contrib.gis.geos import Point, Polygon, LineString
+from django.contrib.gis.geos import LineString, Point, Polygon
 from rest_framework.test import APIClient
-from core.models import Drone, Flight, Detection, Hazard, Runway
+
+from core.models import Detection, Drone, Flight, Hazard, Runway
 
 User = get_user_model()
 
@@ -21,11 +22,9 @@ def api_client():
 def admin_user(db):
     """Create admin user"""
     user = User.objects.create_superuser(
-        username='admin',
-        email='admin@test.com',
-        password='admin123'
+        username="admin", email="admin@test.com", password="admin123"
     )
-    user.role = 'ADMIN'
+    user.role = "ADMIN"
     user.save()
     return user
 
@@ -34,11 +33,9 @@ def admin_user(db):
 def operator_user(db):
     """Create operator user"""
     user = User.objects.create_user(
-        username='operator',
-        email='operator@test.com',
-        password='operator123'
+        username="operator", email="operator@test.com", password="operator123"
     )
-    user.role = 'OPERATOR'
+    user.role = "OPERATOR"
     user.save()
     return user
 
@@ -47,50 +44,54 @@ def operator_user(db):
 def drone(db):
     """Create sample drone"""
     return Drone.objects.create(
-        identifier='Test-Drone-001',
-        model='DJI Matrice 300',
+        identifier="Test-Drone-001",
+        model="DJI Matrice 300",
         max_payload=2.7,
         home_location=Point(73.0550, 33.6125),
-        status='ACTIVE'
+        status="ACTIVE",
     )
 
 
 @pytest.fixture
 def runway(db):
     """Create sample runway"""
-    geometry = Polygon([
-        (73.0500, 33.6100),
-        (73.0600, 33.6100),
-        (73.0600, 33.6200),
-        (73.0500, 33.6200),
-        (73.0500, 33.6100),
-    ])
-    
+    geometry = Polygon(
+        [
+            (73.0500, 33.6100),
+            (73.0600, 33.6100),
+            (73.0600, 33.6200),
+            (73.0500, 33.6200),
+            (73.0500, 33.6100),
+        ]
+    )
+
     return Runway.objects.create(
-        name='Test Runway',
-        airport_code='TEST',
+        name="Test Runway",
+        airport_code="TEST",
         geometry=geometry,
         length_m=3000,
         width_m=61,
-        active=True
+        active=True,
     )
 
 
 @pytest.fixture
 def flight(db, drone):
     """Create sample flight"""
-    path = LineString([
-        (73.0550, 33.6125),
-        (73.0560, 33.6130),
-        (73.0570, 33.6135),
-    ])
-    
+    path = LineString(
+        [
+            (73.0550, 33.6125),
+            (73.0560, 33.6130),
+            (73.0570, 33.6135),
+        ]
+    )
+
     return Flight.objects.create(
         drone=drone,
-        mission_name='Test Mission',
+        mission_name="Test Mission",
         path=path,
-        status='COMPLETED',
-        altitude_m=50
+        status="COMPLETED",
+        altitude_m=50,
     )
 
 
@@ -102,18 +103,14 @@ def detection(db, drone, flight):
         flight=flight,
         timestamp=flight.end_time or flight.start_time,
         geometry=Point(73.0555, 33.6127),
-        label='metal',
+        label="metal",
         confidence=0.92,
-        image_url='https://example.com/detection.jpg',
-        bbox=[100, 100, 150, 150]
+        image_url="https://example.com/detection.jpg",
+        bbox=[100, 100, 150, 150],
     )
 
 
 @pytest.fixture
 def hazard(db, detection):
     """Create sample hazard"""
-    return Hazard.objects.create(
-        detection=detection,
-        score=0.86,
-        level='HIGH'
-    )
+    return Hazard.objects.create(detection=detection, score=0.86, level="HIGH")

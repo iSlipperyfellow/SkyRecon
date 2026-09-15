@@ -1,8 +1,10 @@
 import logging
-from django.core.mail import send_mail
+
 from django.conf import settings
+from django.core.mail import send_mail
 
 logger = logging.getLogger(__name__)
+
 
 def send_critical_hazard_alert(detection, hazard_score):
     """
@@ -18,9 +20,9 @@ def send_critical_hazard_alert(detection, hazard_score):
         f"Mission: {detection.flight.mission_name}\n\n"
         f"Please check the SkyRecon Dashboard immediately for details."
     )
-    
-    recipient_list = [settings.ADMIN_EMAIL] if hasattr(settings, 'ADMIN_EMAIL') else []
-    
+
+    recipient_list = [settings.ADMIN_EMAIL] if hasattr(settings, "ADMIN_EMAIL") else []
+
     if not recipient_list:
         logger.warning("No recipient list configured for critical hazard alerts.")
         return False
