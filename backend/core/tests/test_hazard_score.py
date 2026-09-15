@@ -100,15 +100,16 @@ class TestHazardScoring(TestCase):
 @pytest.mark.django_db
 def test_hazard_creation(detection):
     """Test hazard is created automatically with detection"""
-    # In production, this is done in the view
     from core.hazard_scoring import calculate_hazard_score
 
     hazard_data = calculate_hazard_score(detection)
-    hazard = Hazard.objects.create(
+    hazard, _ = Hazard.objects.get_or_create(
         detection=detection,
-        score=hazard_data["score"],
-        level=hazard_data["level"],
-        reasoning=hazard_data["reasoning"],
+        defaults={
+            "score": hazard_data["score"],
+            "level": hazard_data["level"],
+            "reasoning": hazard_data["reasoning"],
+        },
     )
 
     assert hazard.score == hazard_data["score"]

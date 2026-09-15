@@ -42,12 +42,31 @@ def test_detection_creation(drone, flight):
 
 
 @pytest.mark.django_db
-def test_hazard_levels(detection):
+def test_hazard_levels(drone, flight):
     """Test hazard levels"""
-    hazard_low = Hazard.objects.create(detection=detection, score=0.2, level="LOW")
+    from django.utils import timezone
+    now = timezone.now()
 
+    det_low = Detection.objects.create(
+        drone=drone,
+        flight=flight,
+        timestamp=now,
+        geometry=Point(73.0, 33.6),
+        label="plastic",
+        confidence=0.4,
+    )
+    hazard_low = Hazard.objects.create(detection=det_low, score=0.2, level="LOW")
+
+    det_med = Detection.objects.create(
+        drone=drone,
+        flight=flight,
+        timestamp=now,
+        geometry=Point(73.01, 33.61),
+        label="metal",
+        confidence=0.6,
+    )
     hazard_medium = Hazard.objects.create(
-        detection=detection, score=0.5, level="MEDIUM"
+        detection=det_med, score=0.5, level="MEDIUM"
     )
 
     assert hazard_low.level == "LOW"
