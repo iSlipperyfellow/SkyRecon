@@ -4,26 +4,15 @@ URL routing for API endpoints
 
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import (TokenObtainPairView,
+                                            TokenRefreshView)
 
-from core.views import (
-                                            AIModelViewSet,
-                                            AnalyticsViewSet,
-                                            DetectionViewSet,
-                                            DroneViewSet,
-                                            FlightViewSet,
-                                            HazardViewSet,
-                                            HealthCheckView,
-                                            InferenceJobViewSet,
-                                            MapsViewSet,
-                                            NavigationPlanViewSet,
-                                            ReportViewSet,
-                                            RunwayViewSet,
-                                            SimulatorControlView,
-                                            SystemHealthView,
-                                            TelemetryViewSet,
-                                            UserViewSet,
-)
+from core.views import (AIModelViewSet, AnalyticsViewSet, DetectionViewSet,
+                        DroneViewSet, FlightViewSet, HazardViewSet,
+                        HealthCheckView, InferenceJobViewSet, MapsViewSet,
+                        NavigationPlanViewSet, ReportViewSet, RunwayViewSet,
+                        SimulatorControlView, SystemHealthView,
+                        TelemetryViewSet, UserViewSet)
 
 router = DefaultRouter()
 router.register(r"users", UserViewSet, basename="user")

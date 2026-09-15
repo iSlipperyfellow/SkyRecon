@@ -5,17 +5,8 @@ Django admin configuration
 from django.contrib import admin
 from django.contrib.gis.admin import GeoModelAdmin
 
-from core.models import (
-    Detection,
-    Drone,
-    Flight,
-    Hazard,
-    InferenceJob,
-    NavigationPlan,
-    Runway,
-    Telemetry,
-    User,
-)
+from core.models import (Detection, Drone, Flight, Hazard, InferenceJob,
+                         NavigationPlan, Runway, Telemetry, User)
 
 
 @admin.register(User)

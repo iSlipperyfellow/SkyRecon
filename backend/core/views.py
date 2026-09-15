@@ -19,34 +19,16 @@ from rest_framework_gis.filters import InBBOXFilter
 
 from core.hazard_scoring import calculate_hazard_score
 from core.inference_client import get_inference_client
-from core.models import (
-    AIModel,
-    Detection,
-    Drone,
-    Flight,
-    Hazard,
-    InferenceJob,
-    NavigationPlan,
-    Runway,
-    Telemetry,
-    User,
-)
+from core.models import (AIModel, Detection, Drone, Flight, Hazard,
+                         InferenceJob, NavigationPlan, Runway, Telemetry, User)
 from core.permissions import IsAnalyst
-from core.serializers import (
-    AIModelSerializer,
-    DetectionSerializer,
-    DroneCommandSerializer,
-    DroneSerializer,
-    FlightSerializer,
-    FrameSubmitSerializer,
-    HazardEvaluateSerializer,
-    HazardSerializer,
-    InferenceJobSerializer,
-    NavigationPlanSerializer,
-    RunwaySerializer,
-    TelemetrySerializer,
-    UserSerializer,
-)
+from core.serializers import (AIModelSerializer, DetectionSerializer,
+                              DroneCommandSerializer, DroneSerializer,
+                              FlightSerializer, FrameSubmitSerializer,
+                              HazardEvaluateSerializer, HazardSerializer,
+                              InferenceJobSerializer, NavigationPlanSerializer,
+                              RunwaySerializer, TelemetrySerializer,
+                              UserSerializer)
 
 logger = logging.getLogger(__name__)
 
@@ -622,7 +604,6 @@ class AIModelViewSet(viewsets.ModelViewSet):
                 },
                 status=200,
             )  # Still 200 because DB updated
-
 
 
 import mimetypes

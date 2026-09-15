@@ -6,17 +6,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
-from core.models import (
-    AIModel,
-    Detection,
-    Drone,
-    Flight,
-    Hazard,
-    InferenceJob,
-    NavigationPlan,
-    Runway,
-    Telemetry,
-)
+from core.models import (AIModel, Detection, Drone, Flight, Hazard,
+                         InferenceJob, NavigationPlan, Runway, Telemetry)
 
 User = get_user_model()
 
